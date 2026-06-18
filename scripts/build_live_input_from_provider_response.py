@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Build a private_internal normalized input from a saved provider response.
 
-This script does not call Sorftime. It only reads a local runtime JSON that
-already contains provider tool responses, then creates the normalized input
+This script does not call MCP or the network. It only reads a local runtime JSON
+that already contains provider tool responses, then creates the normalized input
 consumed by normalize_market_data_response.py.
 """
 
@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Any
 
 
-SOURCE = "Sorftime MCP category_report/category_keywords/category_trend/keyword_detail/product_reviews summary"
+SOURCE = "BYO MCP provider category/keyword/review summary"
 
 
 def utc_now() -> str:
@@ -210,7 +210,7 @@ def build_price_summary(products: list[dict[str, Any]], stats: dict[str, Any]) -
         "observed_min_price": round(low, 2),
         "observed_max_price": round(high, 2),
         "price_band_distribution": dict(bands),
-        "margin_signal": "Sorftime 返回了部分竞品毛利/毛利率字段，但本报告未写入采购成本、FBA 费或退货损耗的真实估算。",
+        "margin_signal": "Provider response 返回了部分竞品毛利/毛利率字段，但本报告未写入采购成本、FBA 费或退货损耗的真实估算。",
     }
 
 
@@ -348,7 +348,7 @@ def build_payload(raw: dict[str, Any]) -> dict[str, Any]:
         },
         "profit_space": {
             "score": 13,
-            "reason": f"销量前 80% 产品平均价格 {parse_number(stats.get('average_price')):.2f} 美元，中位价格 {parse_number(stats.get('median_price')):.2f} 美元；Sorftime 有价格和部分毛利字段，但缺少真实 landed cost、FBA 费和退货损耗。",
+            "reason": f"销量前 80% 产品平均价格 {parse_number(stats.get('average_price')):.2f} 美元，中位价格 {parse_number(stats.get('median_price')):.2f} 美元；provider response 有价格和部分毛利字段，但缺少真实 landed cost、FBA 费和退货损耗。",
             "confidence": "medium",
             "missing_data": ["采购 landed cost", "FBA fee", "return loss"],
         },
@@ -382,15 +382,15 @@ def build_payload(raw: dict[str, Any]) -> dict[str, Any]:
         "category_capacity": {
             "conclusion": "类目容量充足，但明显受季节波动和头部品牌影响。",
             "evidence": f"Top100 月销量 {int(top100_sales)}，月销额约 {top100_revenue:,.0f} 美元；类目趋势显示暑期、返校季和年末节点波动明显。",
-            "source": "Sorftime MCP category_report/category_trend",
+            "source": "provider response category_report/category_trend",
             "confidence": "high",
-            "assumption": "Sorftime 返回的 Top100 与类目统计字段代表当前可用类目样本。",
+            "assumption": "Provider response 返回的 Top100 与类目统计字段代表当前可用类目样本。",
             "missing_data": [],
         },
         "keyword_opportunity": {
             "conclusion": "on-ear headphones 是相对窄入口，但不能单靠主词进入。",
             "evidence": f"on-ear headphones 月搜索量 {int(monthly_search)}，搜索结果竞品数 {int(parse_number(keyword_detail.get('搜索结果竞品数量') if isinstance(keyword_detail, dict) else 0))}，CPC {cpc}。",
-            "source": "Sorftime MCP category_keywords/keyword_detail",
+            "source": "provider response category_keywords/keyword_detail",
             "confidence": "medium",
             "assumption": "关键词入口需要与儿童、学校、旅行、舒适度或安全音量场景词组合验证。",
             "missing_data": ["广告位份额", "长尾词转化率"],
@@ -398,7 +398,7 @@ def build_payload(raw: dict[str, Any]) -> dict[str, Any]:
         "competitor_structure": {
             "conclusion": "头部品牌、Amazon 自营和高评论产品共同形成强竞争结构。",
             "evidence": f"Top3 品牌销量占比 {top3_brand_share:.2f}%，Amazon 自营销量占比 {amazon_share:.2f}%，1000+ 评论产品销量占比 {high_review_share:.2f}%。",
-            "source": "Sorftime MCP category_report",
+            "source": "provider response category_report",
             "confidence": "high",
             "assumption": "Top100 结构可代表该节点主要成交结构。",
             "missing_data": [],
@@ -406,15 +406,15 @@ def build_payload(raw: dict[str, Any]) -> dict[str, Any]:
         "price_profit": {
             "conclusion": "价格带存在可选区间，但真实利润空间必须补采购成本、FBA 和退货损耗后才能确认。",
             "evidence": f"平均价格 {parse_number(stats.get('average_price')):.2f} 美元，中位价格 {parse_number(stats.get('median_price')):.2f} 美元；Top100 可观察价格区间约 {price_profit.get('observed_min_price')}-{price_profit.get('observed_max_price')} 美元。",
-            "source": "Sorftime MCP category_report",
+            "source": "provider response category_report",
             "confidence": "medium",
-            "assumption": "Sorftime 毛利字段不等同于卖家真实 landed cost 和净利。",
+            "assumption": "Provider margin fields do not equal seller landed cost or net profit.",
             "missing_data": ["estimated_landed_cost", "amazon_fee", "fba_fee", "return_loss"],
         },
         "review_voc": {
             "conclusion": "VOC 机会集中在舒适度、耐用性、声音/音量、连接稳定和续航承诺落差。",
             "evidence": f"已从 {len(voc.get('reviewed_asins', []))} 个头部 ASIN 摘要化 {review_count} 条负评样本，未保留原始评论全文。",
-            "source": "Sorftime MCP product_reviews summary",
+            "source": "provider response product_reviews summary",
             "confidence": "medium",
             "assumption": "当前 VOC 样本用于方向判断，不等同于全类目评论结论。",
             "missing_data": ["更多 ASIN 评论覆盖", "Q&A 摘要"],
@@ -422,7 +422,7 @@ def build_payload(raw: dict[str, Any]) -> dict[str, Any]:
         "differentiation": {
             "conclusion": "更适合从场景化与痛点产品化切入，不适合做无差异通用耳机。",
             "evidence": "Top100 中儿童、学校、旅行、安全音量、可折叠等定位反复出现，VOC 痛点可转为产品结构和页面承诺。",
-            "source": "Sorftime MCP category_report/product_reviews summary",
+            "source": "provider response category_report/product_reviews summary",
             "confidence": "medium",
             "assumption": "差异化需要供应链打样和合规验证后才能确认。",
             "missing_data": ["BOM 成本", "认证成本"],
@@ -430,7 +430,7 @@ def build_payload(raw: dict[str, Any]) -> dict[str, Any]:
         "risk": {
             "conclusion": "当前不是硬性 no-enter，但竞争、评论、Amazon 自营和合规成本决定了新品不宜直接进入。",
             "evidence": "高评论产品销量占比高，Amazon 自营占比高，儿童/蓝牙/音频性能 claim 均需验证。",
-            "source": "Sorftime MCP normalized analysis",
+            "source": "provider response normalized analysis",
             "confidence": "high",
             "assumption": "未发现 active + critical 否决项，但多个 warning 仍需上线前验证。",
             "missing_data": ["专利检索", "认证成本", "供应链验证"],
@@ -479,7 +479,7 @@ def build_payload(raw: dict[str, Any]) -> dict[str, Any]:
                 "product_reviews",
             ],
             "checked_at": raw.get("source", {}).get("generated_at") or utc_now(),
-            "notes": "Sorftime MCP 已用 nodeId=12097480011 返回真实类目、关键词、竞品和摘要化 VOC 数据；报告包不保留密钥或原始评论全文。",
+            "notes": "Provider response 已返回类目、关键词、竞品和摘要化 VOC 数据；报告包不保留连接配置或原始评论全文。",
         },
         "confidence": "medium",
         "data_quality": "high",
@@ -545,7 +545,7 @@ def build_payload(raw: dict[str, Any]) -> dict[str, Any]:
                 "type": "no_viable_margin",
                 "status": "unknown",
                 "severity": "warning",
-                "reason": "Sorftime 缺少卖家真实 landed cost、FBA fee、退货损耗和广告 ACOS，净利空间仍需确认。",
+                "reason": "Provider response 缺少卖家真实 landed cost、FBA fee、退货损耗和广告 ACOS，净利空间仍需确认。",
                 "required_validation": ["采购报价", "FBA fee", "退货损耗", "广告成本容忍度"],
             },
         ],
@@ -584,33 +584,33 @@ def build_payload(raw: dict[str, Any]) -> dict[str, Any]:
         "analysis": analysis,
         "evidence": [
             {
-                "claim": "Sorftime MCP nodeId 级类目数据可用。",
-                "source": "Sorftime MCP category_report",
+                "claim": "Provider category response 可用。",
+                "source": "provider response category_report",
                 "evidence": f"nodeId={request.get('category_node_id')} 返回 Top100={len(products)}，类目统计字段={len(stats)}。",
                 "confidence": "high",
             },
             {
                 "claim": "类目竞争壁垒高。",
-                "source": "Sorftime MCP category_report",
+                "source": "provider response category_report",
                 "evidence": f"Top3 品牌销量占比 {top3_brand_share:.2f}%，Amazon 自营销量占比 {amazon_share:.2f}%，1000+ 评论产品销量占比 {high_review_share:.2f}%。",
                 "confidence": "high",
             },
             {
                 "claim": "VOC 痛点具备产品化方向，但需扩样验证。",
-                "source": "Sorftime MCP product_reviews summary",
+                "source": "provider response product_reviews summary",
                 "evidence": f"{len(voc.get('reviewed_asins', []))} 个 ASIN 的 {review_count} 条负评摘要显示舒适度、耐用性、音质音量、连接和续航痛点。",
                 "confidence": "medium",
             },
         ],
         "assumptions": [
-            "Sorftime 返回的 Top100 和类目统计字段代表当前可用市场样本。",
+            "Provider response 返回的 Top100 和类目统计字段代表当前可用市场样本。",
             "product_reviews 只保留摘要化 VOC 主题，不保存原始评论全文。",
             "利润空间必须补采购报价、FBA fee、退货损耗和广告成本后才能做财务结论。",
         ],
         "next_validation_actions": [
             "扩展 Top20 ASIN 的摘要化 VOC，并按舒适度、耐用性、连接、续航、音量安全拆分。",
             "补供应链 SKU 报价、landed cost、FBA fee、退货损耗和认证成本。",
-            "对儿童/学校/旅行/安全音量场景词做 Sorftime 关键词扩展和广告位验证。",
+            "对儿童/学校/旅行/安全音量场景词做 provider keyword 扩展和广告位验证。",
             "做专利、外观、FCC/蓝牙/儿童安全音量合规排查。",
         ],
         "downstream_brief": {
@@ -638,8 +638,8 @@ def build_payload(raw: dict[str, Any]) -> dict[str, Any]:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Build normalized private_internal input from saved Sorftime raw JSON.")
-    parser.add_argument("raw_json", help="runtime Sorftime raw JSON path.")
+    parser = argparse.ArgumentParser(description="Build normalized private_internal input from a saved provider response JSON.")
+    parser.add_argument("raw_json", help="Local provider response JSON path.")
     parser.add_argument("--out", required=True, help="Output normalized input JSON path.")
     return parser.parse_args()
 

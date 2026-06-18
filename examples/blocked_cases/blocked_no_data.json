@@ -2,5 +2,5 @@
   "privacy_mode": "public_safe_real_world",
   "blocked_status": "blocked_no_data",
   "missing_fields": ["usable provider data"],
-  "next_validation_actions": ["Retry Sorftime or provide a public-safe fixture."]
+  "next_validation_actions": ["Regenerate the local provider response or provide a public-safe fixture."]
 }

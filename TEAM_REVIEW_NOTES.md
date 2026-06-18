@@ -1,42 +1,55 @@
 # Team Review Notes
 
-## Skill Solves
+## Repository Positioning
 
-`amazon-sorftime-product-selection-research` turns Amazon category, keyword, ASIN, URL, or product idea inputs into a traceable product-selection decision report.
+`amazon-sorftime-product-selection-research` is now a BYO-MCP Skill Framework. It does not include a real Sorftime MCP connector, provider client, auth flow, credential reader, or network collection script.
 
-It is designed for Sorftime-backed Amazon market entry validation, with a fixed 100-point scoring model, blocked states, evidence tables, missing-data notes, risk checks, and downstream Listing / image / A+ handoff briefs.
+Teams bring their own local MCP / Sorftime-compatible provider, save a provider response JSON locally, then use this repository to normalize, render, package, validate, and privacy-scan the result.
 
-## Best Fit
+## What It Solves
 
-- Amazon category or Best Sellers product-selection screening
-- keyword opportunity and entry-point validation
-- competitor structure and review moat analysis
-- VOC pain point productization checks
-- trend, price band, and profit-space analysis
-- team-readable HTML / Markdown / JSON delivery packages
+- Amazon category and product-selection decision reports
+- competitor, keyword, VOC, trend, price, and risk synthesis
+- fixed 100-point decision scoring
+- blocked package generation when data is unavailable or incomplete
+- HTML / Markdown / JSON / ZIP delivery packages
 
-## Not Fit
+## Use Modes
 
-- automatic ads, inventory, or purchasing actions
-- final legal, certification, patent, or compliance clearance
-- public publishing of private market reports
-- using public-safe fixtures as live market conclusions
-- storing raw review text or complete real Top100 exports in the repository
+### Public-safe demo mode
+
+Run the anonymized fixture:
+
+```bash
+python scripts/run_public_safe_demo.py
+```
+
+This proves the pipeline, but it is not live market data and not a real selection conclusion.
+
+### BYO MCP provider response mode
+
+Run your own local provider outside this repository, save the response JSON in an ignored local directory, then run:
+
+```bash
+python scripts/run_from_provider_response.py runtime/provider_response.json --out-dir dist
+```
+
+The script does not connect to MCP, does not read credentials, and does not access the network.
+
+### Private internal local mode
+
+Use `privacy_mode=private_internal` only for local or approved internal analysis. Keep real provider responses and private reports outside GitHub.
 
 ## Input Contract
 
-Required inputs are documented in `contracts/input.schema.json`.
+Provider response shape is documented in:
 
-Core fields:
+- `adapters/provider_response_contract.example.json`
+- `adapters/sorftime_mcp_contract.example.json`
 
-- `marketplace`: `US`, `UK`, or `CA`
-- `input_type`: `asin`, `url`, `keyword`, `category`, `best_sellers`, or `natural_language`
-- one primary object: `product_type`, `category_name`, `keyword`, `asin`, or `url`
-- `task_type`: `product_selection`, `competitor_analysis`, `keyword_research`, `voc_analysis`, or `listing_handoff_brief`
+The response should provide market capacity, keywords, competitors, price/profit summary, VOC summary, differentiation notes, risks, scoring inputs, and source metadata. If required data is missing, the package should use a blocked status instead of fabricating conclusions.
 
 ## Output Deliverables
-
-Each completed run should produce:
 
 - `product_selection_report.html`
 - `product_selection_report.md`
@@ -45,82 +58,42 @@ Each completed run should produce:
 - `validation_result.json`
 - `product_selection_delivery_package.zip`
 
-Local preview URLs are only for validation. Share the ZIP package or publish through an approved internal or public-safe channel.
+Do not send localhost, loopback, or local file URLs as team share links. Share ZIP packages only through approved internal or public-safe channels.
 
-## Privacy Modes
-
-`public_safe_real_world` is the default GitHub demo mode. It allows public category names and generic keywords, but competitors, ASINs, brands, profit details, and samples must be anonymized or template-level.
-
-`strict_anonymized` is for stronger anonymized examples where all market identifiers should be generalized.
-
-`private_internal` is for local team analysis with real provider data. These outputs must remain outside GitHub and should stay in local or approved internal channels.
-
-## Public-safe Demo
-
-Run from `<skill_dir>`:
-
-```bash
-python scripts/normalize_market_data_response.py fixtures/best_sellers_on_ear_headphones_us_public_safe.json --out dist/product_selection_data.json
-python scripts/render_product_selection_report.py dist/product_selection_data.json --out dist/product_selection_report.html
-python scripts/export_markdown_report.py dist/product_selection_data.json --out dist/product_selection_report.md
-python scripts/package_report.py --input-dir dist --out dist/product_selection_delivery_package.zip
-python scripts/validate_product_selection_package.py dist
-python scripts/privacy_scan.py .
-```
-
-The On-Ear Headphones fixture is a public-safe template sample. It is not live market data, not a complete real Top100, not a raw Sorftime export, and not a real product-selection conclusion.
-
-## Private Internal Analysis
-
-Private runs should use the Sorftime MCP contract documented in `adapters/sorftime_mcp_contract.example.json`.
-
-Rules:
-
-- keep raw provider responses in local runtime-only folders
-- do not commit private reports or provider raw output
-- do not publish real ASIN, brand, or complete Top100 reports publicly
-- return blocked states when data is unavailable or required fields are missing
-
-## Opening Reports
-
-For local review, open `product_selection_report.html` directly from the generated output folder.
-
-For team handoff, send `product_selection_delivery_package.zip` through an approved internal channel. Do not send localhost, loopback, or local file URLs as share links.
-
-## Validation Commands
-
-Run these before release:
-
-```bash
-python scripts/validate_product_selection_package.py dist
-python scripts/privacy_scan.py .
-python <skill_creator_dir>/scripts/quick_validate.py <skill_dir>
-```
-
-Expected result:
-
-- package validator returns `ok=true`
-- privacy scan returns `findings_count=0`
-- quick validate prints `Skill is valid!`
-
-## GitHub Exclusions
+## GitHub Boundary
 
 GitHub should include source code, schemas, contracts, workflows, scoring rules, templates, anonymized fixtures, examples, adapters, docs, and release notes.
 
 GitHub must not include:
 
 - generated `dist` outputs
-- `runtime` or `tmp` folders
+- `runtime`, `tmp`, `private`, `real_data`, or `exports`
 - private local configuration
-- real provider raw responses
+- real provider responses
 - real business reports
+- real ASIN lists
+- raw review text
 - complete real Top100 exports
-- user brands, user ASINs, store data, backend data, account data, or credentials
+- credentials, account data, or internal provider locations
+
+## Validation
+
+Run before review:
+
+```bash
+python scripts/quick_validate.py
+```
+
+Expected result:
+
+- public-safe demo passes
+- blocked fixtures pass package validation
+- package validator returns `ok=true`
+- privacy scan returns `findings_count=0`
 
 ## Next Steps
 
-- create a team repository or confirm the target repository URL
-- push this skill on `release/amazon-product-selection-skill-v0.2`
-- open a review PR
-- ask reviewers to run the public-safe demo and validation commands
-- keep private_internal test reports outside the repository
+- reviewers run `python scripts/quick_validate.py`
+- reviewers inspect `dist/product_selection_report.html` from the public-safe demo
+- private internal tests use ignored local directories only
+- keep live provider collection outside this repository

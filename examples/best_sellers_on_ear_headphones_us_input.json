@@ -1,4 +1,4 @@
-{
+﻿{
   "privacy_mode": "public_safe_real_world",
   "input": {
     "keyword": "on-ear headphones",
@@ -14,5 +14,5 @@
       "confirm battery and charging compliance before launch"
     ]
   },
-  "notice": "This is a public-safe template input, not live market data, not a complete real Top 100, not a raw Sorftime export, and not a real product selection conclusion."
+  "notice": "This is a public-safe template input, not live market data, not a complete real Top 100, not a raw provider export, and not a real product selection conclusion."
 }

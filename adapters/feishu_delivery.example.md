@@ -1,4 +1,4 @@
-# Optional Feishu Delivery Adapter
+﻿# Optional Feishu Delivery Adapter
 
 This document is an example contract only. It does not perform authentication,
 does not publish documents, and does not include real private configuration.
@@ -22,7 +22,7 @@ does not publish documents, and does not include real private configuration.
 
 ## Delivery Rules
 
-- Do not upload raw Sorftime responses.
+- Do not upload raw provider responses.
 - Do not upload raw review text.
 - Do not upload runtime files.
 - Do not upload private configuration files.

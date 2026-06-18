@@ -49,7 +49,7 @@
     "This fixture verifies blocked_missing_fields package generation."
   ],
   "next_validation_actions": [
-    "Collect missing price, review, keyword, and cost fields from Sorftime MCP.",
+    "Collect missing price, review, keyword, and cost fields from the local provider response.",
     "Rerun package generation after field coverage is sufficient."
   ]
 }

@@ -1,4 +1,4 @@
-{
+﻿{
   "schema_version": "1.0.0",
   "privacy_mode": "public_safe_real_world",
   "generated_at": "template_sample",
@@ -17,7 +17,7 @@
     "tools": ["sorftime_mcp_full_market_data"],
     "checked_at": "template_sample",
     "blocking_status": null,
-    "notes": "Public-safe template sample; not a live Sorftime response."
+    "notes": "Public-safe template sample; not a live provider response."
   },
   "data_quality": {
     "status": "medium",
@@ -28,7 +28,7 @@
       "Public-safe template sample.",
       "Not live market data.",
       "Not a complete real Top 100 export.",
-      "Not a raw Sorftime export.",
+      "Not a raw provider export.",
       "Not a real product selection conclusion."
     ],
     "data_freshness": "template_sample_not_live_market_data"
@@ -46,14 +46,14 @@
   "decision": {
     "label": "enter",
     "score": 81,
-    "summary": "Template sample maps to enter, but live Sorftime evidence and supplier facts are still required.",
+    "summary": "Template sample maps to enter, but local provider evidence and supplier facts are still required.",
     "confidence": "medium",
     "blocked_status": null
   },
   "market_stage": "growth",
   "new_product_ramp_difficulty": {
     "level": "medium",
-    "ramp_reason": "Template-level ramp assessment; validate with live Sorftime evidence before acting.",
+    "ramp_reason": "Template-level ramp assessment; validate with local provider evidence before acting.",
     "review_threshold": "template_sample",
     "low_review_high_sales_count": "template_sample",
     "ad_dependency": "template_sample",
@@ -67,7 +67,7 @@
       "entry_type": "scenario_wedge",
       "entry_point": "small-space household storage scenario",
       "reason": "Scenario intent is clearer than broad category demand in the public-safe template.",
-      "required_validation": ["live Sorftime keyword evidence"]
+      "required_validation": ["local provider keyword evidence"]
     }
   ],
   "voc_productization_score": [
@@ -86,7 +86,7 @@
       "status": "inactive",
       "severity": "info",
       "reason": "Public-safe template sample requires live validation.",
-      "required_validation": ["live Sorftime MCP collection"]
+      "required_validation": ["local BYO-MCP provider response"]
     }
   ],
   "evidence_level": "C_public_safe_template",
@@ -135,7 +135,7 @@
   ],
   "assumptions": ["This is a public-safe template sample and not live market data."],
   "missing_data": [],
-  "next_validation_actions": ["Run live Sorftime MCP collection."],
+  "next_validation_actions": ["Run local BYO-MCP provider response."],
   "downstream_brief": {
     "product_identity": "compact small-space organizer",
     "target_user": "household buyers with limited storage space",
@@ -144,7 +144,7 @@
     "differentiation_points": ["clear dimension communication"],
     "facts_to_confirm": ["material", "load capacity", "dimensions"],
     "restricted_claims": ["certified safety", "medical benefit"],
-    "handoff_notes": "Use this brief only after live Sorftime evidence and product facts are confirmed."
+    "handoff_notes": "Use this brief only after local provider evidence and product facts are confirmed."
   },
   "public_safe_notice": {
     "applies_to": "On-Ear Headphones fixture and all public examples",
@@ -152,7 +152,7 @@
       "This is a public-safe template sample.",
       "It is not live market data.",
       "It is not a complete real Top 100 export.",
-      "It is not a raw Sorftime export.",
+      "It is not a raw provider export.",
       "It does not represent a real product selection conclusion."
     ]
   },

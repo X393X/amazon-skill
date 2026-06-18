@@ -37,10 +37,10 @@ ANALYSIS_TO_PLACEHOLDER = {
 
 PUBLIC_SAFE_NOTICE = (
     "On-Ear Headphones fixture 是 public-safe template sample；不是实时市场数据；"
-    "不是完整真实 Top 100；不是真实 Sorftime 原始导出；不代表真实选品结论。"
+    "不是完整真实 Top 100；不是真实 provider 原始导出；不代表真实选品结论。"
 )
 PRIVATE_INTERNAL_NOTICE = (
-    "本报告为 private_internal 本地真实 Sorftime MCP 分析输出；不得提交 GitHub；"
+    "本报告为 private_internal 本地真实 provider response 分析输出；不得提交 GitHub；"
     "报告不包含个人身份、会话信息、接口密钥、授权凭证或原始评论全文。"
 )
 PROFIT_PUBLIC_SAFE_NOTICE = (
@@ -834,7 +834,7 @@ def render(data: dict[str, Any], template: str) -> str:
 
     values = {
         "report_title": title,
-        "hero_subtitle": "基于 Sorftime MCP / Sorftime-compatible MCP 的 Amazon 选品、类目调研和进入决策报告。",
+        "hero_subtitle": "基于 BYO-MCP / Sorftime-compatible provider response 的 Amazon 选品、类目调研和进入决策报告。",
         "hero_meta": hero_meta_html,
         "public_safe_notice": PRIVATE_INTERNAL_NOTICE if data.get("privacy_mode") == "private_internal" else PUBLIC_SAFE_NOTICE,
         "footer_notice": (

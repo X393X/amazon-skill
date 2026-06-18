@@ -1,15 +1,15 @@
 ---
 name: amazon-sorftime-product-selection-research
-description: Use when the user asks for Sorftime-backed Amazon product selection, category research, product opportunity validation, market-entry decisions, competitor/VOC/keyword opportunity analysis, or HTML/Markdown product selection delivery packages.
+description: Use when the user asks for BYO-MCP or Sorftime-compatible provider-response Amazon product selection, category research, product opportunity validation, market-entry decisions, competitor/VOC/keyword opportunity analysis, or HTML/Markdown product selection delivery packages.
 ---
 
 # Amazon Product Selection Research
 
 ## 1. Purpose
 
-Use this skill to turn Amazon category, keyword, ASIN, URL, or product idea inputs into a traceable product selection decision. The report combines Sorftime MCP live data or public-safe fixtures with market capacity, competitor structure, keyword opportunity, VOC pain points, trend signals, profit scenarios, risk checks, and a next validation plan.
+Use this skill to turn Amazon category, keyword, ASIN, URL, or product idea inputs into a traceable product selection decision from a local BYO-MCP / Sorftime-compatible provider response or a public-safe fixture. The report combines market capacity, competitor structure, keyword opportunity, VOC pain points, trend signals, profit scenarios, risk checks, and a next validation plan.
 
-Default evidence source is Sorftime MCP / Sorftime-compatible full market data. Public-safe fixtures are allowed only for template tests and GitHub-safe examples.
+This repository does not include a live Sorftime MCP connector, credential reader, auth flow, or network collection script. Users must connect their own local provider outside this repository and save a provider response JSON locally. Public-safe fixtures are allowed only for template tests and GitHub-safe examples.
 
 ## 2. Scope
 
@@ -56,7 +56,7 @@ A run is successful only when:
 - public-safe and private-internal boundaries are explicit
 - `validate_product_selection_package.py` passes
 - `privacy_scan.py .` passes for the public repository surface
-- the run can be repeated from the same input and fixture/runtime data
+- the run can be repeated from the same input fixture or local provider response
 - localhost or loopback URLs are not used as shareable delivery links
 
 ## 7. Input Contract
@@ -112,7 +112,7 @@ Keep facts, model inference, visible conclusions, and risk warnings separate. Ex
 - `validation_result.json`
 - `source_manifest.json`
 
-`source_manifest.json` must record data source, tools, generation time, sanitized parameter summary, missing fields, confidence, privacy mode, public-safe status, private-internal status, and delivery metadata.
+`source_manifest.json` must record data source, generation time, sanitized parameter summary, missing fields, confidence, privacy mode, public-safe status, private-internal status, and delivery metadata.
 
 `evidence.json` should contain `claims`, `sources`, `assumptions`, `missing_data`, and `confidence`.
 
@@ -170,12 +170,8 @@ Delivery metadata must distinguish `local_preview_url`, `report_file_path`, `pac
 Run validation from the skill directory:
 
 ```bash
-python scripts/normalize_market_data_response.py fixtures/best_sellers_on_ear_headphones_us_public_safe.json --out dist/product_selection_data.json
-python scripts/render_product_selection_report.py dist/product_selection_data.json --out dist/product_selection_report.html
-python scripts/export_markdown_report.py dist/product_selection_data.json --out dist/product_selection_report.md
-python scripts/package_report.py --input-dir dist --out dist/product_selection_delivery_package.zip
-python scripts/validate_product_selection_package.py dist
-python scripts/privacy_scan.py .
+python scripts/run_public_safe_demo.py
+python scripts/quick_validate.py
 ```
 
 The validator checks required files, UTF-8 readability, missing sections, unresolved placeholders, decision legality, blocked status legality, extended model fields, public-safe boundaries, delivery URL safety, and ZIP package contents.
@@ -191,11 +187,11 @@ Use blocked packages instead of fabricated conclusions:
 - insufficient competitors: `blocked_insufficient_competitors`, downgrade to user ASIN analysis
 - insufficient reviews: downgrade to title, image, Q&A, or category evidence
 - unconfirmed material: mark as `user_claimed_material`, not platform fact
-- MCP unavailable: `blocked_sorftime_unavailable`, public-safe fixture may test the workflow but cannot produce a real conclusion
+- Provider response unavailable: `blocked_sorftime_unavailable`, public-safe fixture may test the workflow but cannot produce a real conclusion
 
 ## 15. Risk Boundaries
 
-Never fabricate reviews, certifications, legal clearance, platform facts, or raw data. Do not turn water-resistant into waterproof. Do not use competitor trademarks in Search Terms. Do not create infringement-prone brand terms. Do not claim PPE, protective footwear, CE, UKCA, ASTM, EN ISO, or similar compliance without evidence. Do not publish `private_internal` reports publicly. Do not commit real Sorftime raw responses.
+Never fabricate reviews, certifications, legal clearance, platform facts, or raw data. Do not turn water-resistant into waterproof. Do not use competitor trademarks in Search Terms. Do not create infringement-prone brand terms. Do not claim PPE, protective footwear, CE, UKCA, ASTM, EN ISO, or similar compliance without evidence. Do not publish `private_internal` reports publicly. Do not commit real provider responses.
 
 For footwear visual or Listing handoff briefs: do not change shoe shape, invent logo placement, reverse zipper direction, invent outsole patterns, render children's shoes with adult proportions, call PU leather, or turn splash resistance into waterproof.
 

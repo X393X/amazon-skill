@@ -1,4 +1,4 @@
-{
+﻿{
   "privacy_mode": "public_safe_real_world",
   "fixture_name": "blocked_no_data",
   "input": {
@@ -30,6 +30,6 @@
   ],
   "next_validation_actions": [
     "Confirm the query parameters.",
-    "Rerun Sorftime MCP collection with a broader keyword or category."
+    "Rerun provider response generation with a broader keyword or category."
   ]
 }

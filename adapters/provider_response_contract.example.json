@@ -1,0 +1,81 @@
+{
+  "contract_version": "1.0.0",
+  "contract_name": "byo_mcp_provider_response",
+  "description": "Public-safe shape for a local provider response consumed by the normalizer. This is not live market data.",
+  "privacy_mode": "public_safe_real_world",
+  "report_language": "zh-CN",
+  "input": {
+    "marketplace": "US",
+    "site": "Amazon US",
+    "input_type": "category",
+    "category_name": "Best Sellers in On-Ear Headphones",
+    "category_node_id": "example_node_id",
+    "category_scope": "best_sellers",
+    "data_scope": "top_100",
+    "data_source": "byo_mcp_provider_response",
+    "keyword": "on-ear headphones",
+    "product_idea": "example product opportunity",
+    "output_format": "html"
+  },
+  "provider_status": {
+    "status": "ready_or_blocked",
+    "blocking_status": "null_or_blocked_status",
+    "notes": "The real provider connection is managed outside this repository."
+  },
+  "required_blocks": [
+    "market_capacity",
+    "keywords",
+    "competitors",
+    "price_profit",
+    "voc",
+    "differentiation",
+    "risks"
+  ],
+  "market_capacity": {
+    "demand_signal": "summary_or_metric",
+    "trend_signal": "summary_or_metric",
+    "seasonality_signal": "summary_or_metric"
+  },
+  "keywords": [
+    {
+      "keyword": "public_or_anonymized_keyword",
+      "monthly_search_volume": "number_or_summary",
+      "competition_proxy": "low_medium_or_high"
+    }
+  ],
+  "competitors": [
+    {
+      "competitor_id": "example_competitor_001",
+      "asin": "example_asin_001",
+      "brand": "example_brand_a",
+      "price_band": "summary_band",
+      "review_band": "summary_band",
+      "rating_band": "summary_band"
+    }
+  ],
+  "price_profit": {
+    "price_band_summary": "summary_only",
+    "margin_signal": "summary_only"
+  },
+  "voc": {
+    "painpoint_summary": [
+      "summarized theme only"
+    ],
+    "positive_motivation_summary": [
+      "summarized theme only"
+    ],
+    "contains_review_text": false
+  },
+  "differentiation": [
+    "example differentiated entry point"
+  ],
+  "risks": [
+    "example risk"
+  ],
+  "blocked_statuses": [
+    "blocked_no_data",
+    "blocked_missing_fields",
+    "blocked_sorftime_unavailable"
+  ],
+  "public_safe_notice": "Template contract only. Not live market data, not a complete real Top100, not a raw provider export, and not a real product-selection conclusion."
+}

@@ -246,7 +246,7 @@ def check_html(dist: Path, data: dict[str, Any], errors: list[str]) -> None:
     if data.get("privacy_mode") == "private_internal":
         required_notice = [
             "private_internal",
-            "本地真实 Sorftime MCP 分析输出",
+            "本地真实 provider response 分析输出",
             "不得提交 GitHub",
             "Profit detail in public-safe fixtures is template-level only and not a live margin estimate.",
             "公开安全样例中的利润明细仅用于模板展示，不代表实时利润估算。",
@@ -256,7 +256,7 @@ def check_html(dist: Path, data: dict[str, Any], errors: list[str]) -> None:
             "public-safe template sample",
             "不是实时市场数据",
             "不是完整真实 Top 100",
-            "不是真实 Sorftime 原始导出",
+            "不是真实 provider 原始导出",
             "不代表真实选品结论",
             "Profit detail in public-safe fixtures is template-level only and not a live margin estimate.",
             "公开安全样例中的利润明细仅用于模板展示，不代表实时利润估算。",

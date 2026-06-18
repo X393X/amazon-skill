@@ -1,7 +1,11 @@
 {
-  "provider": "sorftime_mcp",
-  "endpoint": "<YOUR_LOCAL_MCP_ENDPOINT>",
-  "auth_env": "SORFTIME_MCP_TOKEN",
-  "timeout_seconds": 60,
-  "mode": "private_internal"
+  "mode": "private_internal",
+  "note": "This repository does not store provider connection settings.",
+  "provider_response_path": "runtime/provider_response.json",
+  "rules": [
+    "Connect your MCP or Sorftime-compatible provider outside this repository.",
+    "Save the local provider response JSON in an ignored directory.",
+    "Run scripts/run_from_provider_response.py against that local JSON.",
+    "Do not commit provider responses or private generated reports."
+  ]
 }

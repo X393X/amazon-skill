@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Normalize Sorftime-style market data into a product selection package."""
+"""Normalize BYO-MCP provider-response market data into a product selection package."""
 
 from __future__ import annotations
 
@@ -25,8 +25,8 @@ BLOCKED_STATUSES = {
 TEMPLATE_DATA_FRESHNESS = "template_sample_not_live_market_data"
 LIVE_DATA_FRESHNESS = "live_or_latest_available_sorftime_data"
 DEFAULT_REPORT_LANGUAGE = "zh-CN"
-SOURCE_NAME = "Sorftime MCP"
-PUBLIC_SAFE_SOURCE_NAME = "Sorftime MCP public-safe normalized response"
+SOURCE_NAME = "BYO MCP provider response"
+PUBLIC_SAFE_SOURCE_NAME = "public-safe normalized provider response"
 
 MARKET_STAGES = {"growth", "mature", "price_war", "seasonal", "declining", "unknown"}
 RAMP_LEVELS = {"low", "medium", "high", "very_high"}
@@ -390,7 +390,7 @@ def build_ramp_difficulty(raw: dict[str, Any], blocked_status: str | None) -> di
     if blocked_status:
         return {
             "level": "very_high",
-            "ramp_reason": "Blocked package: ramp difficulty cannot be validated without usable Sorftime evidence.",
+            "ramp_reason": "Blocked package: ramp difficulty cannot be validated without usable provider evidence.",
             "review_threshold": "unknown",
             "low_review_high_sales_count": "unknown",
             "ad_dependency": "unknown",
@@ -403,7 +403,7 @@ def build_ramp_difficulty(raw: dict[str, Any], blocked_status: str | None) -> di
         "level": as_text(source.get("level"), "medium"),
         "ramp_reason": as_text(
             source.get("ramp_reason"),
-            "Template-level ramp assessment; validate with live Sorftime evidence before acting.",
+            "Template-level ramp assessment; validate with local provider evidence before acting.",
         ),
         "review_threshold": source.get("review_threshold", "template_sample"),
         "low_review_high_sales_count": source.get("low_review_high_sales_count", "template_sample"),
@@ -426,8 +426,8 @@ def build_entry_strategy(raw: dict[str, Any], blocked_status: str | None) -> lis
             {
                 "entry_type": "keyword_wedge",
                 "entry_point": "public-safe keyword segment",
-                "reason": "Default template entry route; validate with live Sorftime data.",
-                "required_validation": ["live Sorftime keyword evidence", "product fact confirmation"],
+                "reason": "Default template entry route; validate with local provider data.",
+                "required_validation": ["local provider keyword evidence", "product fact confirmation"],
             }
         ]
     result: list[dict[str, Any]] = []
@@ -489,7 +489,7 @@ def build_disqualifiers(raw: dict[str, Any], blocked_status: str | None) -> list
                     "status": "active",
                     "severity": "critical",
                     "reason": f"Package is blocked by {blocked_status}.",
-                    "required_validation": ["restore usable Sorftime evidence"],
+                    "required_validation": ["restore usable provider evidence"],
                 }
             ]
         return [
@@ -498,7 +498,7 @@ def build_disqualifiers(raw: dict[str, Any], blocked_status: str | None) -> list
                 "status": "inactive",
                 "severity": "info",
                 "reason": "Public-safe template sample requires live validation before action.",
-                "required_validation": ["live Sorftime MCP collection"],
+                "required_validation": ["local BYO-MCP provider response"],
             }
         ]
     result: list[dict[str, Any]] = []
@@ -661,7 +661,7 @@ def build_profit_scenarios(
             "ad_cost": profit_detail.get("ad_cost_tolerance", "unknown"),
             "return_loss": profit_detail.get("return_loss", "unknown"),
             "target_margin": profit_detail.get("target_margin", "unknown"),
-            "conclusion": "基准情景只作为验证框架，不把 Sorftime 毛利字段等同于真实净利。",
+            "conclusion": "基准情景只作为验证框架，不把 provider 毛利字段等同于真实净利。",
             "evidence_level": "A_live_market_data",
         },
         {
@@ -688,7 +688,7 @@ def build_ramp_path(raw: dict[str, Any], blocked_status: str | None) -> list[dic
         return [
             {
                 "stage": "blocked",
-                "goal": "恢复可用 Sorftime 证据",
+                "goal": "恢复可用 provider 证据",
                 "actions": ["补齐阻断字段", "重新生成报告包"],
                 "validation_standard": f"blocked_status 解除：{blocked_status}",
                 "risk": "数据不可用时不能进入打样或 Listing 执行。",
@@ -754,18 +754,18 @@ def build_validation_plan(raw: dict[str, Any], blocked_status: str | None, next_
     if blocked_status:
         return [
             {
-                "validation_item": "Sorftime 数据可用性",
-                "method": "重新调用指定 Sorftime MCP 工具并检查字段覆盖",
+                "validation_item": "Provider response 数据可用性",
+                "method": "重新获取本地 provider response 并检查字段覆盖",
                 "pass_standard": "必须解除 blocked_status 并生成完整 dist 包。",
                 "priority": "critical",
                 "blocked_if_missing": True,
             }
         ]
-    actions = next_actions or ["补充 Sorftime 数据", "补充成本、认证、供应链事实"]
+    actions = next_actions or ["补充 provider response 数据", "补充成本、认证、供应链事实"]
     return [
         {
             "validation_item": action,
-            "method": "按 Sorftime 数据、供应链报价或人工核验材料执行二次验证",
+            "method": "按 provider response、供应链报价或人工核验材料执行二次验证",
             "pass_standard": "可形成明确 enter/cautious/weak/no-enter 复核依据。",
             "priority": "high" if index <= 2 else "medium",
             "blocked_if_missing": index <= 2,
@@ -834,7 +834,7 @@ def build_voc_trend_summary(raw: dict[str, Any], blocked_status: str | None, voc
             "summary": "阻断状态下不能判断 VOC 趋势。",
             "trend_direction": "unknown",
             "evidence": [],
-            "missing_data": ["usable Sorftime review evidence"],
+            "missing_data": ["usable provider review evidence"],
         }
     top = sorted(
         voc_scores,
@@ -946,9 +946,9 @@ def score_item(raw_scores: dict[str, Any], key: str, label: str, max_score: int,
         return {
             "score": 0,
             "max_score": max_score,
-            "reason": "Blocked package: scoring is not available without usable Sorftime evidence.",
+            "reason": "Blocked package: scoring is not available without usable provider evidence.",
             "confidence": "low",
-            "missing_data": ["usable Sorftime evidence"],
+            "missing_data": ["usable provider evidence"],
         }
     source = raw_scores.get(key)
     if isinstance(source, dict):
@@ -996,20 +996,20 @@ def conclusion_item(
     if blocked_status:
         return {
             "conclusion": f"{SECTION_LABELS[key]}被阻断，不能形成选品结论。",
-            "evidence": f"当前状态为 {blocked_status}，缺少可用于判断的 Sorftime 证据。",
+            "evidence": f"当前状态为 {blocked_status}，缺少可用于判断的 provider response 证据。",
             "source": source_name_for(privacy_mode),
             "confidence": "low",
             "assumption": "阻断状态下不推断市场机会。",
-            "missing_data": missing_fields or ["usable Sorftime evidence"],
+            "missing_data": missing_fields or ["usable provider evidence"],
         }
     return {
         "conclusion": as_text(
             source_item.get("conclusion"),
-            f"{SECTION_LABELS[key]}需要结合 Sorftime 标准化数据判断。",
+            f"{SECTION_LABELS[key]}需要结合 provider response 标准化数据判断。",
         ),
         "evidence": as_text(
             source_item.get("evidence"),
-            "Normalized Sorftime-style fixture includes public-safe evidence summaries only.",
+            "Normalized public-safe fixture includes evidence summaries only.",
         ),
         "source": as_text(source_item.get("source"), SOURCE_NAME),
         "confidence": source_item.get("confidence") if source_item.get("confidence") in {"high", "medium", "low"} else "medium",
@@ -1051,7 +1051,7 @@ def build_evidence(raw: dict[str, Any], blocked_status: str | None, privacy_mode
         {
             "claim": "The normalized fixture contains enough public-safe summaries for a template report.",
             "source": SOURCE_NAME,
-            "evidence": "Evidence is summarized and anonymized; no raw Sorftime export or raw review text is included.",
+            "evidence": "Evidence is summarized and anonymized; no raw provider export or raw review text is included.",
             "confidence": "medium",
         }
     ]
@@ -1062,11 +1062,11 @@ def build_downstream_brief(raw: dict[str, Any], input_data: dict[str, Any], bloc
     if blocked_status:
         return {
             "product_identity": "blocked product selection brief",
-            "target_user": "not available until Sorftime evidence is usable",
+            "target_user": "not available until provider evidence is usable",
             "priority_keywords": [],
             "user_questions": [],
             "differentiation_points": [],
-            "facts_to_confirm": ["Sorftime availability", "required market fields"],
+            "facts_to_confirm": ["provider response availability", "required market fields"],
             "restricted_claims": ["unverified performance claims", "unverified compliance claims"],
             "handoff_notes": "Blocked package: do not hand off to Listing, image, or A+ execution.",
         }
@@ -1091,7 +1091,7 @@ def build_downstream_brief(raw: dict[str, Any], input_data: dict[str, Any], bloc
         or ["unverified performance claims", "unverified compliance claims"],
         "handoff_notes": as_text(
             raw_brief.get("handoff_notes"),
-            "Use this brief only as a template handoff after live Sorftime evidence and product facts are confirmed.",
+            "Use this brief only as a template handoff after local provider evidence and product facts are confirmed.",
         ),
     }
 
@@ -1119,8 +1119,8 @@ def build_manifest(
         source_scope = query.get("category_name") or query.get("category") or query.get("keyword") or "Amazon market request"
         sources = [
             {
-                "source_name": "Sorftime MCP",
-                "source_type": "sorftime_mcp",
+                "source_name": "BYO MCP provider response",
+                "source_type": "byo_mcp_provider_response",
                 "source_scope": f"{query.get('site', 'Amazon')} {source_scope}".strip(),
                 "status": "blocked" if blocked_status else "ready",
                 "record_count": total_records,
@@ -1168,7 +1168,7 @@ def build_provider_blocked_payload(request_payload: dict[str, Any], config_paylo
         "input": request_payload,
         "blocked_status": "blocked_sorftime_unavailable",
         "missing_fields": [
-            "live Sorftime MCP response",
+            "local provider response",
             "category_metrics",
             "keyword_metrics",
             "competitor_matrix",
@@ -1178,10 +1178,10 @@ def build_provider_blocked_payload(request_payload: dict[str, Any], config_paylo
         "sorftime_status": {
             "status": "failed",
             "available": False,
-            "tools": ["sorftime_mcp"],
+            "tools": ["byo_mcp_provider"],
             "checked_at": utc_now(),
             "notes": (
-                "Standalone provider adapter is contract-only in this skill package; "
+                "This repository is BYO-MCP and does not include a live provider connector; "
                 "no fallback source was used and no market data was fabricated."
             ),
         },
@@ -1191,14 +1191,14 @@ def build_provider_blocked_payload(request_payload: dict[str, Any], config_paylo
             for name in REQUIRED_BLOCKS
         ],
         "assumptions": [
-            "真实 Sorftime MCP 调用未在 standalone skill 脚本内完成。",
+            "真实 provider 数据采集必须在本仓库外完成。",
             "未回退公开网页、旧文件或样例数据。",
             "当前输出是中文阻断型报告，不是选品结论。",
         ],
         "next_validation_actions": [
-            "确认本地 Sorftime MCP 授权与工具列表可用。",
-            "将真实 Sorftime 响应保存为 runtime/on_ear_headphones_us_provider_response.json 后重新标准化。",
-            "不要把 private_config.local.json、runtime 或 dist 真实报告提交 GitHub。",
+            "确认本地 BYO-MCP provider 可生成响应 JSON。",
+            "将真实 provider response 保存到 runtime/provider_response.json 后重新标准化。",
+            "不要把 runtime、private、real_data 或 dist 真实报告提交 GitHub。",
         ],
     }
 
@@ -1216,7 +1216,7 @@ def normalize(raw: dict[str, Any], input_name: str = "input.json") -> tuple[dict
     blocked_status = infer_blocked_status(raw)
     missing_fields = [as_text(item) for item in as_list(raw.get("missing_fields")) if as_text(item).strip()]
     if blocked_status and not missing_fields:
-        missing_fields = ["usable Sorftime evidence"]
+        missing_fields = ["usable provider evidence"]
 
     scores = build_scores(raw, blocked_status)
     data_quality_status = "blocked" if blocked_status else as_text(raw.get("data_quality"), "medium")
@@ -1269,17 +1269,17 @@ def normalize(raw: dict[str, Any], input_name: str = "input.json") -> tuple[dict
     assumptions = [as_text(item) for item in as_list(raw.get("assumptions")) if as_text(item).strip()]
     if not assumptions:
         assumptions = (
-            ["当前包为本地 private_internal 输出；真实结论必须以可用 Sorftime MCP 数据为准。"]
+            ["当前包为本地 private_internal 输出；真实结论必须以可用 provider response 数据为准。"]
             if privacy_mode == "private_internal"
             else ["This package is a public-safe template sample and not live market data."]
         )
     next_actions = [as_text(item) for item in as_list(raw.get("next_validation_actions")) if as_text(item).strip()]
     if not next_actions:
         next_actions = (
-            ["Restore Sorftime MCP access and rerun normalization."]
+            ["Restore local provider response access and rerun normalization."]
             if blocked_status == "blocked_sorftime_unavailable"
             else [
-                "Run live Sorftime MCP collection before making a product-entry decision.",
+                "Generate a local provider response before making a product-entry decision.",
                 "Confirm landed cost, fees, compliance, and supply-chain facts.",
             ]
         )
@@ -1302,7 +1302,7 @@ def normalize(raw: dict[str, Any], input_name: str = "input.json") -> tuple[dict
         "input": input_data,
         "sorftime_status": {
             "status": "blocked" if blocked_status else as_text(status_raw.get("status"), "ready"),
-            "tools": [as_text(item) for item in as_list(status_raw.get("tools") or ["sorftime_mcp_full_market_data"])],
+            "tools": [as_text(item) for item in as_list(status_raw.get("tools") or ["byo_mcp_provider_response"])],
             "checked_at": as_text(status_raw.get("checked_at"), generated_at),
             "blocking_status": blocked_status,
             "notes": as_text(
@@ -1310,7 +1310,7 @@ def normalize(raw: dict[str, Any], input_name: str = "input.json") -> tuple[dict
                 (
                     "Private internal package; no raw review text or credentials are retained."
                     if privacy_mode == "private_internal"
-                    else "Public-safe template sample; not a live Sorftime MCP response."
+                    else "Public-safe template sample; not a live provider response."
                 ),
             ),
         },
@@ -1325,8 +1325,8 @@ def normalize(raw: dict[str, Any], input_name: str = "input.json") -> tuple[dict
             "limitations": [
                 *(
                     [
-                        "Private internal Sorftime-backed package.",
-                        "Raw Sorftime export and raw review text are not retained in the report package.",
+                        "Private internal provider-response package.",
+                        "Raw provider export and raw review text are not retained in the report package.",
                         "授权凭证、本地私有配置路径和接口密钥均不写入交付包。",
                     ]
                     if privacy_mode == "private_internal"
@@ -1334,7 +1334,7 @@ def normalize(raw: dict[str, Any], input_name: str = "input.json") -> tuple[dict
                         "Public-safe template sample.",
                         "Not live market data.",
                         "Not a complete real Top 100 export.",
-                        "Not a raw Sorftime export.",
+                        "Not a raw provider export.",
                         "Not a real product selection conclusion.",
                     ]
                 )
@@ -1387,7 +1387,7 @@ def normalize(raw: dict[str, Any], input_name: str = "input.json") -> tuple[dict
                 "This is a public-safe template sample.",
                 "It is not live market data.",
                 "It is not a complete real Top 100 export.",
-                "It is not a raw Sorftime export.",
+                "It is not a raw provider export.",
                 "It does not represent a real product selection conclusion.",
             ],
         },
@@ -1415,16 +1415,16 @@ def normalize(raw: dict[str, Any], input_name: str = "input.json") -> tuple[dict
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Normalize Sorftime-style market data into product selection JSON.")
-    parser.add_argument("input_json", nargs="?", help="Input fixture or Sorftime-style JSON response.")
+    parser = argparse.ArgumentParser(description="Normalize BYO-MCP provider-response market data into product selection JSON.")
+    parser.add_argument("input_json", nargs="?", help="Input fixture or local provider response JSON.")
     parser.add_argument("--input", dest="request_json", help="Request JSON used with --provider.")
     parser.add_argument(
         "--provider",
         choices=["sorftime_mcp"],
         default=None,
-        help="Provider adapter to use. sorftime_mcp is contract-only and blocks if no adapter returns data.",
+        help="Deprecated contract-only provider mode. It never connects to MCP or the network.",
     )
-    parser.add_argument("--config", default=None, help="Local private config path for provider mode.")
+    parser.add_argument("--config", default=None, help="Deprecated local config path for contract-only provider mode.")
     parser.add_argument(
         "--out",
         default="dist/product_selection_data.json",

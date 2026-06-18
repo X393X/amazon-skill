@@ -1,8 +1,8 @@
-# Release Notes v0.2
+﻿# Release Notes v0.2
 
 ## Scope
 
-`amazon-sorftime-product-selection-research` v0.2 is a release-freeze version for a public-safe, reproducible skill package. It keeps the core positioning unchanged: Sorftime-backed Amazon product selection and category research with HTML as the primary decision report.
+`amazon-sorftime-product-selection-research` v0.2 is a release-freeze version for a public-safe, reproducible BYO-MCP skill package. The repository provides provider response contracts, normalizer, renderer, validator, privacy scanner, public-safe fixtures, and report packaging. It does not include a live MCP connector or provider runtime.
 
 This release does not modify Amazon Ops APP entrypoints, workflows, SOP files, Excel templates, UI, APIs, or quality gates.
 
@@ -13,6 +13,9 @@ This release does not modify Amazon Ops APP entrypoints, workflows, SOP files, E
 - Blocked package support for `blocked_no_data`, `blocked_missing_fields`, and `blocked_sorftime_unavailable`.
 - Active critical disqualifier rule: a package with an active critical disqualifier cannot output `decision.label=enter`.
 - Public-safe fixture support for `Best Sellers in On-Ear Headphones`, `Amazon US`, and generic on-ear headphone keywords.
+- BYO provider response mode via `scripts/run_from_provider_response.py`.
+- One-command public-safe demo via `scripts/run_public_safe_demo.py`.
+- Repository-level validation via `scripts/quick_validate.py`.
 
 ## BSC Framework Fusion
 
@@ -102,7 +105,9 @@ Markdown is an auxiliary export for review and handoff. It does not replace `pro
 
 Last validated release-freeze checks:
 
-- `quick_validate.py`: passed.
+- `scripts/quick_validate.py`: passed.
+- `scripts/run_public_safe_demo.py`: passed.
+- `scripts/run_from_provider_response.py` using a public-safe provider-response fixture: passed.
 - public-safe On-Ear Headphones clean-run: passed.
 - `valid_product_selection_public_safe`: passed.
 - blocked package fixtures: passed for `blocked_no_data`, `blocked_missing_fields`, and `blocked_sorftime_unavailable`.
@@ -114,11 +119,11 @@ Last validated release-freeze checks:
 
 ## Known Limitations
 
-- The standalone provider path is contract-only and does not perform live Sorftime MCP calls by itself.
-- Real Sorftime MCP calls must be executed in the local Codex/MCP environment and normalized from saved local runtime responses.
+- The repository is BYO-MCP and does not perform live provider calls by itself.
+- Real MCP/provider collection must be executed outside this repository and normalized from a saved local provider response.
 - Public-safe fixtures are template samples, not live market data.
 - Public-safe fixtures are not complete real Top100 exports.
-- Public-safe fixtures are not raw Sorftime exports.
+- Public-safe fixtures are not raw provider exports.
 - Public-safe fixture scores are not real product-selection conclusions.
 - Optional charts manifest is supported, but chart rendering is not required for v0.2.
 - Feishu delivery is only documented as an optional adapter boundary; no real publishing is included.
@@ -136,7 +141,7 @@ Last validated release-freeze checks:
 - `.env`
 - `.env.*`
 - `*.local.json`
-- Sorftime raw responses
+- real provider responses
 - `private_internal` HTML, JSON, Markdown, or manifest outputs
 - complete real Top100 exports
 - real business reports

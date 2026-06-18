@@ -1,7 +1,7 @@
-{
+﻿{
   "privacy_mode": "public_safe_real_world",
   "fixture_name": "best_sellers_on_ear_headphones_us_public_safe",
-  "sample_notice": "On-Ear Headphones fixture is a public-safe template sample; it is not live market data, not a complete real Top 100, not a raw Sorftime export, and not a real product selection conclusion.",
+  "sample_notice": "On-Ear Headphones fixture is a public-safe template sample; it is not live market data, not a complete real Top 100, not a raw provider export, and not a real product selection conclusion.",
   "input": {
     "keyword": "on-ear headphones",
     "category": "Best Sellers in On-Ear Headphones",
@@ -21,7 +21,7 @@
     "available": true,
     "tools": ["sorftime_mcp_full_market_data"],
     "checked_at": "template_sample",
-    "notes": "Public-safe template sample; not a live Sorftime response."
+    "notes": "Public-safe template sample; not a live provider response."
   },
   "confidence": "medium",
   "data_quality": "medium",
@@ -58,7 +58,7 @@
   "market_stage": "mature",
   "new_product_ramp_difficulty": {
     "level": "high",
-    "ramp_reason": "Template sample indicates review, comfort-claim, and ranking barriers; validate with live Sorftime data.",
+    "ramp_reason": "Template sample indicates review, comfort-claim, and ranking barriers; validate with local provider data.",
     "review_threshold": "template_sample",
     "low_review_high_sales_count": "template_sample",
     "ad_dependency": "template_sample",
@@ -72,7 +72,7 @@
       "entry_type": "voc_painpoint_wedge",
       "entry_point": "comfort and battery-clarity pain points",
       "reason": "Public-safe VOC summaries point to comfort and feature clarity rather than broad head-term entry.",
-      "required_validation": ["live Sorftime VOC summary", "prototype comfort feedback", "battery test proof"]
+      "required_validation": ["local provider VOC summary", "prototype comfort feedback", "battery test proof"]
     },
     {
       "entry_type": "keyword_wedge",
@@ -112,8 +112,8 @@
       "type": "data_unreliable",
       "status": "inactive",
       "severity": "info",
-      "reason": "Public-safe template sample must be replaced by live Sorftime evidence before action.",
-      "required_validation": ["live Sorftime MCP collection"]
+      "reason": "Public-safe template sample must be replaced by local provider evidence before action.",
+      "required_validation": ["local BYO-MCP provider response"]
     },
     {
       "type": "high_certification_cost",
@@ -391,11 +391,11 @@
   "assumptions": [
     "This is a public-safe template sample and not live market data.",
     "It is not a complete real Top 100.",
-    "It is not a raw Sorftime export.",
+    "It is not a raw provider export.",
     "It does not represent a real product selection conclusion."
   ],
   "next_validation_actions": [
-    "Run live Sorftime MCP data collection before making a real decision.",
+    "Run live provider response data collection before making a real decision.",
     "Separate wired and wireless keyword validation.",
     "Verify battery compliance, audio claims, return costs, and supplier facts."
   ],

@@ -1,6 +1,6 @@
-{
+﻿{
   "privacy_mode": "public_safe_real_world",
   "blocked_status": "blocked_sorftime_unavailable",
-  "missing_fields": ["Sorftime MCP connection"],
+  "missing_fields": ["provider response"],
   "next_validation_actions": ["Check MCP configuration and authorization."]
 }

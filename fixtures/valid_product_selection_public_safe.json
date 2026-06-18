@@ -1,4 +1,4 @@
-{
+﻿{
   "privacy_mode": "public_safe_real_world",
   "fixture_name": "valid_product_selection_public_safe",
   "input": {
@@ -20,7 +20,7 @@
     "available": true,
     "tools": ["sorftime_mcp_full_market_data"],
     "checked_at": "template_sample",
-    "notes": "Public-safe template sample; not a live Sorftime response."
+    "notes": "Public-safe template sample; not a live provider response."
   },
   "confidence": "medium",
   "data_quality": "medium",
@@ -57,7 +57,7 @@
   "market_stage": "growth",
   "new_product_ramp_difficulty": {
     "level": "medium",
-    "ramp_reason": "Template sample indicates moderate review and ranking barriers; validate with live Sorftime data.",
+    "ramp_reason": "Template sample indicates moderate review and ranking barriers; validate with local provider data.",
     "review_threshold": "template_sample",
     "low_review_high_sales_count": "template_sample",
     "ad_dependency": "template_sample",
@@ -71,7 +71,7 @@
       "entry_type": "scenario_wedge",
       "entry_point": "small-space household storage scenario",
       "reason": "Scenario intent is clearer than broad category demand in the public-safe template.",
-      "required_validation": ["live Sorftime keyword evidence", "supplier product fact confirmation"]
+      "required_validation": ["local provider keyword evidence", "supplier product fact confirmation"]
     }
   ],
   "voc_productization_score": [
@@ -98,7 +98,7 @@
       "status": "inactive",
       "severity": "info",
       "reason": "Public-safe template sample still requires live validation before action.",
-      "required_validation": ["live Sorftime MCP collection"]
+      "required_validation": ["local BYO-MCP provider response"]
     },
     {
       "type": "unavailable_supply_chain",
@@ -272,7 +272,7 @@
       "missing_data": ["supplier material proof"]
     }
   },
-  "decision_summary": "Template sample score maps to enter, but live Sorftime evidence and supplier facts are still required.",
+  "decision_summary": "Template sample score maps to enter, but local provider evidence and supplier facts are still required.",
   "analysis": {
     "category_capacity": {
       "conclusion": "Demand appears sufficient for a controlled validation pass.",
@@ -350,7 +350,7 @@
     "Competitor, brand, and ASIN identifiers are anonymized."
   ],
   "next_validation_actions": [
-    "Run live Sorftime MCP collection for the selected keyword and category.",
+    "Run local BYO-MCP provider response for the selected keyword and category.",
     "Confirm landed cost, fulfillment fee, return-rate assumptions, and packaging.",
     "Validate supplier material proof and structural design feasibility."
   ],
@@ -362,6 +362,6 @@
     "differentiation_points": ["clear dimension communication", "stronger connector design"],
     "facts_to_confirm": ["material", "load capacity", "dimensions", "packaging strength"],
     "restricted_claims": ["certified safety", "medical benefit"],
-    "handoff_notes": "Use this brief only after live Sorftime evidence and product facts are confirmed."
+    "handoff_notes": "Use this brief only after local provider evidence and product facts are confirmed."
   }
 }
