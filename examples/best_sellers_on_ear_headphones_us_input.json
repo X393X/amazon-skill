@@ -1,0 +1,18 @@
+{
+  "privacy_mode": "public_safe_real_world",
+  "input": {
+    "keyword": "on-ear headphones",
+    "category": "Best Sellers in On-Ear Headphones",
+    "asin": [],
+    "product_idea": "wireless on-ear headphones for everyday listening",
+    "site": "Amazon US",
+    "target_price": "29.99-59.99",
+    "target_cost": "12.00-24.00",
+    "constraints": [
+      "avoid unverified noise-cancellation claims",
+      "avoid medical hearing claims",
+      "confirm battery and charging compliance before launch"
+    ]
+  },
+  "notice": "This is a public-safe template input, not live market data, not a complete real Top 100, not a raw Sorftime export, and not a real product selection conclusion."
+}

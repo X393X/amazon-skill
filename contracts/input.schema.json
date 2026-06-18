@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contracts/input.schema.json",
+  "title": "Product Selection Input Contract",
+  "type": "object",
+  "required": ["marketplace", "input_type", "task_type"],
+  "properties": {
+    "marketplace": { "type": "string", "enum": ["US", "UK", "CA"] },
+    "input_type": {
+      "type": "string",
+      "enum": ["asin", "url", "keyword", "category", "best_sellers", "natural_language"]
+    },
+    "task_type": {
+      "type": "string",
+      "enum": ["product_selection", "competitor_analysis", "keyword_research", "voc_analysis", "listing_handoff_brief"]
+    },
+    "product_type": { "type": "string" },
+    "category_name": { "type": "string" },
+    "keyword": { "type": "string" },
+    "asin": { "type": ["string", "array"], "items": { "type": "string" } },
+    "url": { "type": "string" },
+    "brand": { "type": "string" },
+    "target_price": { "type": ["number", "string"] },
+    "target_user": { "type": "string" },
+    "material": { "type": "string" },
+    "color": { "type": "string" },
+    "size_range": { "type": "string" },
+    "existing_images": { "type": "array", "items": { "type": "string" } },
+    "competitor_asins": { "type": "array", "items": { "type": "string" } },
+    "keyword_pool": { "type": "array", "items": { "type": "string" } },
+    "category_node_id": { "type": "string" },
+    "privacy_mode": { "type": "string", "enum": ["public_safe_real_world", "strict_anonymized", "private_internal"] },
+    "report_language": { "type": "string", "default": "zh-CN" }
+  },
+  "anyOf": [
+    { "required": ["product_type"] },
+    { "required": ["category_name"] },
+    { "required": ["keyword"] },
+    { "required": ["asin"] },
+    { "required": ["url"] }
+  ],
+  "blocked_statuses": [
+    "blocked_missing_site",
+    "blocked_missing_product_type",
+    "blocked_invalid_input",
+    "blocked_no_data",
+    "blocked_missing_fields",
+    "blocked_sorftime_unavailable",
+    "blocked_insufficient_competitors",
+    "blocked_fetch_failed"
+  ]
+}

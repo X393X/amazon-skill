@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.0.0",
+  "privacy_mode": "public_safe_real_world",
+  "generated_at": "template_sample",
+  "input": {
+    "keyword": "example storage organizer",
+    "category": "example home organization",
+    "asin": [],
+    "product_idea": "compact organizer for small-space household storage",
+    "site": "Amazon US",
+    "target_price": "24.99-34.99",
+    "target_cost": "8.00-12.00",
+    "constraints": ["avoid unverified regulated claims"]
+  },
+  "sorftime_status": {
+    "status": "ready",
+    "tools": ["sorftime_mcp_full_market_data"],
+    "checked_at": "template_sample",
+    "blocking_status": null,
+    "notes": "Public-safe template sample; not a live Sorftime response."
+  },
+  "data_quality": {
+    "status": "medium",
+    "row_count": 10,
+    "field_coverage": 0.8,
+    "missing_fields": [],
+    "limitations": [
+      "Public-safe template sample.",
+      "Not live market data.",
+      "Not a complete real Top 100 export.",
+      "Not a raw Sorftime export.",
+      "Not a real product selection conclusion."
+    ],
+    "data_freshness": "template_sample_not_live_market_data"
+  },
+  "scores": {
+    "demand_capacity": { "score": 17, "max_score": 20, "reason": "Template demand proxy is stable.", "confidence": "medium", "missing_data": [] },
+    "competition_entry": { "score": 15, "max_score": 20, "reason": "Template competitor structure leaves an entry path.", "confidence": "medium", "missing_data": [] },
+    "profit_space": { "score": 16, "max_score": 20, "reason": "Template price and cost bands are illustrative only.", "confidence": "medium", "missing_data": [] },
+    "differentiation_opportunity": { "score": 13, "max_score": 15, "reason": "Template VOC summaries point to improvements.", "confidence": "medium", "missing_data": [] },
+    "voc_painpoint_opportunity": { "score": 8, "max_score": 10, "reason": "Template pain points are actionable.", "confidence": "medium", "missing_data": [] },
+    "keyword_entry": { "score": 8, "max_score": 10, "reason": "Template long-tail keywords are available.", "confidence": "medium", "missing_data": [] },
+    "compliance_supply_risk": { "score": 4, "max_score": 5, "reason": "Template risks are controllable after supplier proof.", "confidence": "medium", "missing_data": ["supplier material proof"] },
+    "total": 81
+  },
+  "decision": {
+    "label": "enter",
+    "score": 81,
+    "summary": "Template sample maps to enter, but live Sorftime evidence and supplier facts are still required.",
+    "confidence": "medium",
+    "blocked_status": null
+  },
+  "market_stage": "growth",
+  "new_product_ramp_difficulty": {
+    "level": "medium",
+    "ramp_reason": "Template-level ramp assessment; validate with live Sorftime evidence before acting.",
+    "review_threshold": "template_sample",
+    "low_review_high_sales_count": "template_sample",
+    "ad_dependency": "template_sample",
+    "brand_concentration": "template_sample",
+    "organic_ranking_barrier": "template_sample",
+    "rating_requirement": "template_sample",
+    "variation_complexity": "template_sample"
+  },
+  "entry_strategy": [
+    {
+      "entry_type": "scenario_wedge",
+      "entry_point": "small-space household storage scenario",
+      "reason": "Scenario intent is clearer than broad category demand in the public-safe template.",
+      "required_validation": ["live Sorftime keyword evidence"]
+    }
+  ],
+  "voc_productization_score": [
+    {
+      "painpoint": "durability expectations",
+      "solution_feasibility": "template_sample",
+      "buyer_willingness_to_pay": "template_sample",
+      "cost_impact": "template_sample",
+      "listing_visibility": "template_sample",
+      "productization_score": 8
+    }
+  ],
+  "disqualifiers": [
+    {
+      "type": "data_unreliable",
+      "status": "inactive",
+      "severity": "info",
+      "reason": "Public-safe template sample requires live validation.",
+      "required_validation": ["live Sorftime MCP collection"]
+    }
+  ],
+  "evidence_level": "C_public_safe_template",
+  "competitor_clusters": {
+    "price_band_cluster": [
+      {
+        "cluster_name": "template mid-price cluster",
+        "summary": "Anonymized products sit across a public-safe band.",
+        "competition_pressure": "medium",
+        "entry_implication": "Validate a scenario wedge before entering.",
+        "evidence_level": "C_public_safe_template"
+      }
+    ],
+    "review_moat_cluster": [],
+    "brand_dominance_cluster": [],
+    "feature_positioning_cluster": [],
+    "weakness_cluster": [],
+    "newcomer_cluster": []
+  },
+  "profit_space_detail": {
+    "target_price": "template_sample",
+    "estimated_landed_cost": "template_sample",
+    "amazon_fee": "unknown",
+    "fba_fee": "unknown",
+    "return_loss": "unknown",
+    "promotion_buffer": "template_sample",
+    "ad_cost_tolerance": "template_sample",
+    "target_margin": "unknown"
+  },
+  "analysis": {
+    "category_capacity": { "conclusion": "Demand appears sufficient for a controlled validation pass.", "evidence": "Public-safe demand proxy is stable.", "source": "sorftime_mcp_full_market_data", "confidence": "medium", "assumption": "Fixture values model a moderate opportunity category.", "missing_data": [] },
+    "keyword_opportunity": { "conclusion": "Start from scenario and attribute keywords.", "evidence": "Template keyword set includes clearer use intent.", "source": "sorftime_mcp_full_market_data", "confidence": "medium", "assumption": "Keyword competitiveness is represented as proxy data.", "missing_data": [] },
+    "competitor_structure": { "conclusion": "Mid-tail entry is plausible.", "evidence": "Anonymized competitors show template bands.", "source": "sorftime_mcp_full_market_data", "confidence": "medium", "assumption": "Identifiers are anonymized.", "missing_data": [] },
+    "price_profit": { "conclusion": "Profit detail is template-level only.", "evidence": "No real fee or margin estimate is included.", "source": "sorftime_mcp_full_market_data", "confidence": "medium", "assumption": "Live costs are not modeled.", "missing_data": ["final fulfillment fee"] },
+    "review_voc": { "conclusion": "VOC summaries identify actionable pain points.", "evidence": "Only summarized themes are included.", "source": "sorftime_mcp_full_market_data", "confidence": "medium", "assumption": "Raw review text is excluded.", "missing_data": [] },
+    "differentiation": { "conclusion": "Differentiation should focus on spec clarity.", "evidence": "Template VOC summaries support size and structure clarity.", "source": "sorftime_mcp_full_market_data", "confidence": "medium", "assumption": "Supplier development can support the improvement.", "missing_data": ["supplier engineering proof"] },
+    "risk": { "conclusion": "Supplier verification remains the main risk.", "evidence": "Material proof is not included.", "source": "sorftime_mcp_full_market_data", "confidence": "medium", "assumption": "No high-risk regulated claim is required.", "missing_data": ["supplier material proof"] }
+  },
+  "evidence": [
+    {
+      "claim": "Mid-tail keyword entry is preferable to broad head-term entry.",
+      "source": "sorftime_mcp_full_market_data",
+      "evidence": "Scenario and attribute keyword summaries show clearer use intent.",
+      "confidence": "medium"
+    }
+  ],
+  "assumptions": ["This is a public-safe template sample and not live market data."],
+  "missing_data": [],
+  "next_validation_actions": ["Run live Sorftime MCP collection."],
+  "downstream_brief": {
+    "product_identity": "compact small-space organizer",
+    "target_user": "household buyers with limited storage space",
+    "priority_keywords": ["small space organizer"],
+    "user_questions": ["Will it fit my available space?"],
+    "differentiation_points": ["clear dimension communication"],
+    "facts_to_confirm": ["material", "load capacity", "dimensions"],
+    "restricted_claims": ["certified safety", "medical benefit"],
+    "handoff_notes": "Use this brief only after live Sorftime evidence and product facts are confirmed."
+  },
+  "public_safe_notice": {
+    "applies_to": "On-Ear Headphones fixture and all public examples",
+    "statements": [
+      "This is a public-safe template sample.",
+      "It is not live market data.",
+      "It is not a complete real Top 100 export.",
+      "It is not a raw Sorftime export.",
+      "It does not represent a real product selection conclusion."
+    ]
+  },
+  "normalized_blocks": {
+    "competitors": [],
+    "keywords": [],
+    "market_capacity": {},
+    "price_profit": {},
+    "voc": {},
+    "differentiation": [],
+    "risks": []
+  },
+  "source_manifest": {
+    "schema_version": "1.0.0",
+    "privacy_mode": "public_safe_real_world",
+    "generated_at": "template_sample",
+    "query": {
+      "site": "Amazon US",
+      "keyword": "example storage organizer",
+      "category": "example home organization",
+      "product_idea": "compact organizer for small-space household storage",
+      "asin_count": 0,
+      "asin_policy": "anonymized_or_not_supplied"
+    },
+    "data_blocks": [],
+    "confidence": "medium",
+    "blocked_status": null,
+    "no_user_private_data": true,
+    "contains_user_private_data": false,
+    "contains_raw_sorftime_export": false,
+    "contains_review_text": false,
+    "public_data_reference": true,
+    "data_freshness": "template_sample_not_live_market_data",
+    "sources": []
+  }
+}

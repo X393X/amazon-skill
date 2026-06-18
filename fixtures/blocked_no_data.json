@@ -1,0 +1,35 @@
+{
+  "privacy_mode": "public_safe_real_world",
+  "fixture_name": "blocked_no_data",
+  "input": {
+    "keyword": "example no data keyword",
+    "category": "example no data category",
+    "asin": [],
+    "product_idea": "example product idea with no returned data",
+    "site": "Amazon US",
+    "target_price": null,
+    "target_cost": null,
+    "constraints": []
+  },
+  "sorftime_status": {
+    "status": "ready",
+    "available": true,
+    "tools": ["sorftime_mcp_full_market_data"],
+    "checked_at": "template_sample",
+    "notes": "Public-safe blocked fixture."
+  },
+  "market_capacity": {},
+  "keywords": [],
+  "competitors": [],
+  "price_profit": {},
+  "voc": {},
+  "differentiation": [],
+  "risks": [],
+  "assumptions": [
+    "This fixture verifies blocked_no_data package generation."
+  ],
+  "next_validation_actions": [
+    "Confirm the query parameters.",
+    "Rerun Sorftime MCP collection with a broader keyword or category."
+  ]
+}

@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{report_title}}</title>
+  <style>
+    :root {
+      --blue: #1b3a6b;
+      --blue2: #2b5797;
+      --accent: #3a7bd5;
+      --cyan: #00a8cc;
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --ink: #1a2332;
+      --muted: #5a6b82;
+      --line: #e2e9f2;
+      --good: #1ba784;
+      --warn: #e8a33d;
+      --bad: #d64545;
+      --gold: #c9a24b;
+      --shadow: 0 2px 10px rgba(27,58,107,.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Segoe UI", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    .hero {
+      color: #fff;
+      background: linear-gradient(135deg, #16305c 0%, #2b5797 55%, #3a7bd5 100%);
+      padding: 60px 0 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero:after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+    }
+    .hero-inner, .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,.16);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      letter-spacing: .5px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      max-width: 980px;
+      font-size: 38px;
+      line-height: 1.18;
+      font-weight: 800;
+      letter-spacing: 0;
+      margin-bottom: 10px;
+    }
+    .hero p { max-width: 920px; font-size: 18px; opacity: .92; font-weight: 300; }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 28px;
+      padding: 5px 10px;
+      border: 1px solid rgba(255,255,255,.32);
+      border-radius: 999px;
+      background: rgba(255,255,255,.13);
+      color: #fff;
+      font-size: 12px;
+    }
+    .wrap { padding-top: 8px; padding-bottom: 34px; }
+    .sec { padding: 42px 0 2px; }
+    .sec h2 {
+      margin: 0 0 18px;
+      font-size: 25px;
+      line-height: 1.3;
+      color: var(--blue);
+      font-weight: 800;
+      letter-spacing: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .sec h2 .n {
+      background: linear-gradient(135deg, var(--blue2), var(--accent));
+      color: #fff;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex: 0 0 38px;
+    }
+    h3 { margin: 18px 0 12px; font-size: 17px; color: var(--blue2); font-weight: 700; }
+    p { margin: 8px 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; overflow-wrap: anywhere; }
+    th, td { border-bottom: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+    th { background: var(--blue); color: #fff; font-weight: 600; white-space: nowrap; }
+    tr:nth-child(even) td { background: #fafbfe; }
+    tr:hover td { background: #eef4fc; }
+    table, .conclusion-block { background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 20px 0; }
+    .kpi {
+      min-height: 118px;
+      padding: 20px 22px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .kpi:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(var(--accent), var(--cyan));
+    }
+    .kpi span { display: block; color: var(--muted); font-size: 12px; }
+    .kpi strong { display: block; margin-top: 8px; font-size: 28px; line-height: 1.2; color: var(--blue); overflow-wrap: anywhere; }
+    .grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+    .panel {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      min-width: 0;
+    }
+    .callout {
+      border: 1px solid #f0d9a8;
+      background: #fff8ec;
+      color: #7a5a1e;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 12px 0 16px;
+    }
+    .callout.risk { border-color: #f2b8b8; background: #fff1f2; color: #7f1d1d; }
+    .callout.good { border-color: #a8e0cc; background: #ecfdf5; color: #065f46; }
+    .muted { color: var(--muted); }
+    .decision-enter { color: var(--good); font-weight: 800; }
+    .decision-cautious, .decision-weak { color: var(--warn); font-weight: 800; }
+    .decision-no-enter, .decision-blocked { color: var(--bad); font-weight: 800; }
+    .scorebar { margin: 13px 0; display: grid; grid-template-columns: 190px minmax(160px, 1fr) 72px; gap: 12px; align-items: center; }
+    .scorebar > strong { color: var(--blue); font-size: 13px; }
+    .track { height: 9px; background: var(--line); border-radius: 6px; overflow: hidden; }
+    .fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--cyan)); border-radius: 6px; }
+    .rank-list { display: grid; gap: 10px; }
+    .rank-item {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr) 88px;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+    .rank-item:last-child { border-bottom: 0; }
+    .rank-no {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--bad);
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #eaf1fb;
+      color: var(--blue2);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .badge.warn { background: #fff3d8; color: #8a5a10; }
+    .badge.bad { background: #fdeeee; color: var(--bad); }
+    .link-asin,
+    .link-brand,
+    .link-keyword,
+    .link-title {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(58,123,213,.45);
+    }
+    .link-asin:hover,
+    .link-brand:hover,
+    .link-keyword:hover,
+    .link-title:hover {
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom-color: var(--blue);
+      background: rgba(58,123,213,.08);
+      border-radius: 4px;
+    }
+    .link-disabled {
+      color: var(--muted);
+      font-size: 12px;
+      background: #eef2f7;
+      padding: 2px 8px;
+      border-radius: 10px;
+      cursor: not-allowed;
+      white-space: nowrap;
+    }
+    .external-hint {
+      font-size: 11px;
+      color: var(--muted);
+      margin-left: 4px;
+    }
+    .cell-sub {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .go {
+      background: linear-gradient(135deg, #1ba784, #16967a);
+      color: #fff;
+      border-radius: 14px;
+      padding: 26px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(27,167,132,.25);
+      margin: 14px 0 18px;
+    }
+    .go .verdict { font-size: 34px; font-weight: 900; letter-spacing: 1px; }
+    .go .score { font-size: 15px; opacity: .9; margin-top: 6px; }
+    .conclusion-block { padding: 18px 20px; margin: 12px 0; }
+    .foot {
+      background: var(--blue);
+      color: rgba(255,255,255,.85);
+      padding: 30px 24px;
+      margin-top: 50px;
+      font-size: 13px;
+      text-align: center;
+    }
+    @media (max-width: 1020px) {
+      .grid2 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .hero { padding: 34px 0 40px; }
+      .hero h1 { font-size: 26px; }
+      .hero-inner, .wrap { padding-left: 14px; padding-right: 14px; }
+      .sec { padding-top: 30px; }
+      .cards { grid-template-columns: 1fr; }
+      .scorebar { grid-template-columns: 1fr; gap: 5px; }
+      .rank-item { grid-template-columns: 30px minmax(0, 1fr); }
+      .rank-item .badge { grid-column: 2; justify-self: start; }
+      table { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">AMAZON US · PRODUCT SELECTION RESEARCH</div>
+      <h1>{{report_title}}</h1>
+      <p>{{hero_subtitle}}</p>
+      <div class="hero-meta">{{hero_meta}}</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="executive-summary" class="sec">
+      <h2><span class="n">1</span>执行摘要</h2>
+      <div class="callout {{decision_tone}}">
+        <strong class="decision-{{decision_class}}">{{decision_cn}}</strong>
+        <span> · 综合评分 {{total_score}} / 100 · 置信度 {{confidence_cn}}</span>
+      </div>
+      <div class="cards">
+        <div class="kpi"><span>综合评分</span><strong>{{total_score}}</strong></div>
+        <div class="kpi"><span>选品结论</span><strong class="decision-{{decision_class}}">{{decision_cn}}</strong></div>
+        <div class="kpi"><span>市场阶段</span><strong>{{market_stage_cn}}</strong></div>
+        <div class="kpi"><span>新品爬坡难度</span><strong>{{ramp_level_cn}}</strong></div>
+        <div class="kpi"><span>关键词入口强度</span><strong>{{keyword_strength}}</strong></div>
+        <div class="kpi"><span>主要风险等级</span><strong>{{primary_risk}}</strong></div>
+      </div>
+      <p>{{executive_summary}}</p>
+      <div class="callout">{{public_safe_notice}}</div>
+    </section>
+
+    <section id="input-info" class="sec">
+      <h2><span class="n">2</span>输入信息</h2>
+      {{input_info}}
+    </section>
+
+    <section id="sorftime-status" class="sec">
+      <h2><span class="n">3</span>数据源状态</h2>
+      {{sorftime_status}}
+    </section>
+
+    <section id="category-capacity" class="sec">
+      <h2><span class="n">4</span>类目容量判断</h2>
+      {{category_capacity}}
+    </section>
+
+    <section id="keyword-opportunity" class="sec">
+      <h2><span class="n">5</span>关键词机会判断</h2>
+      {{keyword_opportunity}}
+    </section>
+
+    <section id="competitor-structure" class="sec">
+      <h2><span class="n">6</span>竞品结构判断</h2>
+      {{competitor_structure}}
+    </section>
+
+    <section id="price-profit" class="sec">
+      <h2><span class="n">7</span>价格带与利润判断</h2>
+      {{price_profit}}
+    </section>
+
+    <section id="review-voc" class="sec">
+      <h2><span class="n">8</span>评论 VOC 痛点判断</h2>
+      {{review_voc}}
+    </section>
+
+    <section id="differentiation" class="sec">
+      <h2><span class="n">9</span>差异化机会判断</h2>
+      {{differentiation}}
+    </section>
+
+    <section id="risk" class="sec">
+      <h2><span class="n">10</span>风险判断</h2>
+      {{risk}}
+    </section>
+
+    <section id="scorecard" class="sec">
+      <h2><span class="n">11</span>评分表</h2>
+      {{scorecard}}
+    </section>
+
+    <section id="final-decision" class="sec">
+      <h2><span class="n">12</span>选品结论</h2>
+      {{final_decision}}
+    </section>
+
+    <section id="evidence-table" class="sec">
+      <h2><span class="n">13</span>证据表</h2>
+      {{evidence_table}}
+    </section>
+
+    <section id="assumptions-missing-data" class="sec">
+      <h2><span class="n">14</span>假设与缺失数据</h2>
+      {{assumptions_missing_data}}
+    </section>
+
+    <section id="next-validation" class="sec">
+      <h2><span class="n">15</span>下一步验证动作</h2>
+      {{next_validation}}
+    </section>
+
+    <section id="downstream-brief" class="sec">
+      <h2><span class="n">16</span>下游 Listing / 图片 / A+ 交接 Brief</h2>
+      {{downstream_brief}}
+    </section>
+
+    <section id="delivery-notes" class="sec">
+      <h2><span class="n">17</span>交付说明 Delivery Notes</h2>
+      {{delivery_notes}}
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>{{footer_notice}}</p>
+  </footer>
+</body>
+</html>

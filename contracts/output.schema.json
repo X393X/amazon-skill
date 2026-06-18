@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contracts/output.schema.json",
+  "title": "Product Selection Output Contract",
+  "type": "object",
+  "required": [
+    "privacy_mode",
+    "report_language",
+    "input",
+    "sorftime_status",
+    "data_quality",
+    "scores",
+    "decision",
+    "market_stage",
+    "new_product_ramp_difficulty",
+    "entry_strategy",
+    "voc_productization_score",
+    "disqualifiers",
+    "evidence_level",
+    "competitor_clusters",
+    "profit_space_detail",
+    "data_coverage_score",
+    "profit_scenarios",
+    "ramp_path",
+    "voc_opportunity_matrix",
+    "validation_plan",
+    "trending_product_signals",
+    "voc_trend_summary",
+    "product_action_plan",
+    "report_delivery_package",
+    "delivery",
+    "optional_charts_manifest",
+    "analysis",
+    "evidence",
+    "missing_data",
+    "next_validation_actions"
+  ],
+  "properties": {
+    "privacy_mode": { "type": "string", "enum": ["public_safe_real_world", "strict_anonymized", "private_internal"] },
+    "report_language": { "type": "string" },
+    "decision": {
+      "type": "object",
+      "required": ["label", "score", "confidence", "blocked_status"],
+      "properties": {
+        "label": { "type": "string", "enum": ["enter", "cautious", "weak", "no-enter", "blocked"] },
+        "score": { "type": "number" },
+        "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+        "blocked_status": {
+          "type": ["string", "null"],
+          "enum": [
+            "blocked_missing_site",
+            "blocked_missing_product_type",
+            "blocked_invalid_input",
+            "blocked_no_data",
+            "blocked_missing_fields",
+            "blocked_sorftime_unavailable",
+            "blocked_insufficient_competitors",
+            "blocked_fetch_failed",
+            null
+          ]
+        }
+      }
+    },
+    "delivery": { "$ref": "delivery.schema.json" }
+  }
+}

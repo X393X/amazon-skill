@@ -1,0 +1,6 @@
+# Optional local private scan terms.
+# Copy this file to private_terms.txt and add one private term per line.
+# Do not commit private_terms.txt.
+private-brand-placeholder
+private-shop-placeholder
+private-internal-code-placeholder

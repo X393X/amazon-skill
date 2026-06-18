@@ -1,0 +1,16 @@
+{
+  "privacy_mode": "public_safe_real_world",
+  "input": {
+    "keyword": "example storage organizer",
+    "category": "example home organization",
+    "asin": [],
+    "product_idea": "compact organizer for small-space household storage",
+    "site": "Amazon US",
+    "target_price": "24.99-34.99",
+    "target_cost": "8.00-12.00",
+    "constraints": [
+      "avoid unverified regulated claims",
+      "confirm supplier material proof"
+    ]
+  }
+}

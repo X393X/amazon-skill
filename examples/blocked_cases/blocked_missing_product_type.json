@@ -1,0 +1,6 @@
+{
+  "privacy_mode": "public_safe_real_world",
+  "blocked_status": "blocked_missing_product_type",
+  "missing_fields": ["product_type or category_name or keyword or asin or url"],
+  "next_validation_actions": ["Provide the product, category, keyword, ASIN, or URL to analyze."]
+}

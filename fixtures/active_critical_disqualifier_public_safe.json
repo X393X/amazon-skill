@@ -1,0 +1,162 @@
+{
+  "privacy_mode": "public_safe_real_world",
+  "fixture_name": "active_critical_disqualifier_public_safe",
+  "input": {
+    "keyword": "example critical rule keyword",
+    "category": "example critical rule category",
+    "asin": [],
+    "product_idea": "example product idea with active critical disqualifier",
+    "site": "Amazon US",
+    "target_price": null,
+    "target_cost": null,
+    "constraints": ["public-safe critical disqualifier rule test"]
+  },
+  "sorftime_status": {
+    "status": "ready",
+    "available": true,
+    "tools": ["sorftime_mcp_full_market_data"],
+    "checked_at": "template_sample",
+    "notes": "Public-safe template sample for active critical disqualifier rule."
+  },
+  "confidence": "medium",
+  "data_quality": "medium",
+  "data_blocks": [
+    {
+      "name": "market_capacity",
+      "status": "ready",
+      "record_count": 10,
+      "field_coverage": 0.8,
+      "fields": ["category", "keyword", "demand_proxy"]
+    },
+    {
+      "name": "keywords",
+      "status": "ready",
+      "record_count": 3,
+      "field_coverage": 0.8,
+      "fields": ["keyword", "intent"]
+    }
+  ],
+  "market_stage": "growth",
+  "new_product_ramp_difficulty": {
+    "level": "medium",
+    "ramp_reason": "Template sample exists only to verify decision capping behavior.",
+    "review_threshold": "template_sample",
+    "low_review_high_sales_count": "template_sample",
+    "ad_dependency": "template_sample",
+    "brand_concentration": "template_sample",
+    "organic_ranking_barrier": "template_sample",
+    "rating_requirement": "template_sample",
+    "variation_complexity": "template_sample"
+  },
+  "entry_strategy": [
+    {
+      "entry_type": "keyword_wedge",
+      "entry_point": "template critical rule keyword wedge",
+      "reason": "The score would otherwise map to enter.",
+      "required_validation": ["resolve active critical disqualifier"]
+    }
+  ],
+  "voc_productization_score": [
+    {
+      "painpoint": "template pain point",
+      "solution_feasibility": "template_sample",
+      "buyer_willingness_to_pay": "template_sample",
+      "cost_impact": "template_sample",
+      "listing_visibility": "template_sample",
+      "productization_score": 8
+    }
+  ],
+  "disqualifiers": [
+    {
+      "type": "compliance_blocker",
+      "status": "active",
+      "severity": "critical",
+      "reason": "Template active critical disqualifier should cap enter.",
+      "required_validation": ["resolve compliance blocker before entry"]
+    }
+  ],
+  "evidence_level": "C_public_safe_template",
+  "competitor_clusters": {
+    "price_band_cluster": [
+      {
+        "cluster_name": "template price cluster",
+        "summary": "Template cluster for rule verification.",
+        "competition_pressure": "medium",
+        "entry_implication": "Resolve critical blocker before entry.",
+        "evidence_level": "C_public_safe_template"
+      }
+    ],
+    "review_moat_cluster": [],
+    "brand_dominance_cluster": [],
+    "feature_positioning_cluster": [],
+    "weakness_cluster": [],
+    "newcomer_cluster": []
+  },
+  "profit_space_detail": {
+    "target_price": "template_sample",
+    "estimated_landed_cost": "template_sample",
+    "amazon_fee": "unknown",
+    "fba_fee": "unknown",
+    "return_loss": "unknown",
+    "promotion_buffer": "template_sample",
+    "ad_cost_tolerance": "template_sample",
+    "target_margin": "unknown"
+  },
+  "market_capacity": {
+    "demand_signal": "template high",
+    "trend_signal": "template stable"
+  },
+  "keywords": [
+    {
+      "keyword": "example critical rule keyword",
+      "intent": "category",
+      "competition_proxy": "medium"
+    }
+  ],
+  "competitors": [
+    {
+      "competitor_id": "example_competitor_001",
+      "asin": "example_asin_001",
+      "brand": "example_brand_a",
+      "positioning": "template rule verification",
+      "price_band": "template_sample",
+      "review_band": "template_sample"
+    }
+  ],
+  "price_profit": {
+    "target_price_band": "template_sample",
+    "target_cost_band": "template_sample",
+    "margin_signal": "template only"
+  },
+  "voc": {
+    "painpoint_summary": ["template pain point"]
+  },
+  "differentiation": ["template wedge"],
+  "risks": ["active critical compliance blocker"],
+  "score_overrides": {
+    "demand_capacity": { "score": 18, "reason": "Template score.", "confidence": "medium", "missing_data": [] },
+    "competition_entry": { "score": 16, "reason": "Template score.", "confidence": "medium", "missing_data": [] },
+    "profit_space": { "score": 16, "reason": "Template score.", "confidence": "medium", "missing_data": [] },
+    "differentiation_opportunity": { "score": 13, "reason": "Template score.", "confidence": "medium", "missing_data": [] },
+    "voc_painpoint_opportunity": { "score": 8, "reason": "Template score.", "confidence": "medium", "missing_data": [] },
+    "keyword_entry": { "score": 8, "reason": "Template score.", "confidence": "medium", "missing_data": [] },
+    "compliance_supply_risk": { "score": 4, "reason": "Template score before disqualifier cap.", "confidence": "medium", "missing_data": [] }
+  },
+  "decision_summary": "Template score would map to enter, but active critical disqualifier must cap the decision.",
+  "assumptions": [
+    "This fixture verifies active critical disqualifier behavior."
+  ],
+  "next_validation_actions": [
+    "Resolve the critical disqualifier and rerun."
+  ],
+  "downstream_brief": {
+    "product_identity": "critical rule test concept",
+    "target_user": "public-safe test user",
+    "priority_keywords": ["example critical rule keyword"],
+    "user_questions": ["Is the critical blocker resolved?"],
+    "differentiation_points": ["template wedge"],
+    "facts_to_confirm": ["critical blocker status"],
+    "restricted_claims": ["unverified compliance claims"],
+    "handoff_notes": "Do not use as a real product-entry conclusion."
+  }
+}

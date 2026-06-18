@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contracts/dataset.schema.json",
+  "title": "Dataset Contract",
+  "type": "object",
+  "required": ["dataset_id", "dataset_type", "site", "source", "row_count", "field_count", "fields", "quality_status", "usable_for"],
+  "properties": {
+    "dataset_id": { "type": "string" },
+    "dataset_type": {
+      "type": "string",
+      "enum": ["product_page_snapshot", "search_results_snapshot", "category_bestsellers_snapshot", "asin_list", "keyword_dataset", "voc_summary"]
+    },
+    "site": { "type": "string" },
+    "source": { "type": "string" },
+    "source_input": { "type": "object" },
+    "file_path": { "type": "string" },
+    "raw_summary_path": { "type": "string" },
+    "row_count": { "type": "integer", "minimum": 0 },
+    "field_count": { "type": "integer", "minimum": 0 },
+    "fields": { "type": "array", "items": { "type": "string" } },
+    "quality_status": { "type": "string", "enum": ["ready", "partial", "blocked"] },
+    "usable_for": { "type": "array", "items": { "type": "string" } },
+    "missing_fields": { "type": "array", "items": { "type": "string" } }
+  }
+}

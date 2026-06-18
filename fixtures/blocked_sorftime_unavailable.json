@@ -1,0 +1,28 @@
+{
+  "privacy_mode": "public_safe_real_world",
+  "fixture_name": "blocked_sorftime_unavailable",
+  "input": {
+    "keyword": "example unavailable keyword",
+    "category": "example unavailable category",
+    "asin": [],
+    "product_idea": "example product idea while Sorftime is unavailable",
+    "site": "Amazon US",
+    "target_price": null,
+    "target_cost": null,
+    "constraints": []
+  },
+  "sorftime_status": {
+    "status": "failed",
+    "available": false,
+    "tools": ["sorftime_mcp_full_market_data"],
+    "checked_at": "template_sample",
+    "notes": "Public-safe blocked fixture for unavailable Sorftime MCP."
+  },
+  "assumptions": [
+    "This fixture verifies blocked_sorftime_unavailable package generation."
+  ],
+  "next_validation_actions": [
+    "Restore Sorftime MCP configuration and access.",
+    "Rerun the normalizer after the health check passes."
+  ]
+}

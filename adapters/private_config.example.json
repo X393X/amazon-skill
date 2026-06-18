@@ -1,0 +1,7 @@
+{
+  "provider": "sorftime_mcp",
+  "endpoint": "<YOUR_LOCAL_MCP_ENDPOINT>",
+  "auth_env": "SORFTIME_MCP_TOKEN",
+  "timeout_seconds": 60,
+  "mode": "private_internal"
+}

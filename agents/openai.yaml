@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sorftime选品调研"
+  short_description: "生成 Amazon 选品决策报告、校验包和可发送 ZIP。"
+  default_prompt: "基于 Sorftime MCP 或 public-safe fixture，为这个 Amazon 关键词、类目、ASIN、URL 或产品想法生成选品决策报告和交付 ZIP。"

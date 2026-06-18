@@ -1,0 +1,412 @@
+{
+  "privacy_mode": "public_safe_real_world",
+  "fixture_name": "best_sellers_on_ear_headphones_us_public_safe",
+  "sample_notice": "On-Ear Headphones fixture is a public-safe template sample; it is not live market data, not a complete real Top 100, not a raw Sorftime export, and not a real product selection conclusion.",
+  "input": {
+    "keyword": "on-ear headphones",
+    "category": "Best Sellers in On-Ear Headphones",
+    "asin": [],
+    "product_idea": "wireless on-ear headphones for everyday listening",
+    "site": "Amazon US",
+    "target_price": "29.99-59.99",
+    "target_cost": "12.00-24.00",
+    "constraints": [
+      "avoid unverified noise-cancellation claims",
+      "avoid medical hearing claims",
+      "confirm battery and charging compliance before launch"
+    ]
+  },
+  "sorftime_status": {
+    "status": "ready",
+    "available": true,
+    "tools": ["sorftime_mcp_full_market_data"],
+    "checked_at": "template_sample",
+    "notes": "Public-safe template sample; not a live Sorftime response."
+  },
+  "confidence": "medium",
+  "data_quality": "medium",
+  "data_blocks": [
+    {
+      "name": "market_capacity",
+      "status": "ready",
+      "record_count": 40,
+      "field_coverage": 0.8,
+      "fields": ["category", "keyword", "demand_proxy", "trend_proxy"]
+    },
+    {
+      "name": "keywords",
+      "status": "ready",
+      "record_count": 3,
+      "field_coverage": 0.9,
+      "fields": ["keyword", "intent", "competition_proxy"]
+    },
+    {
+      "name": "competitors",
+      "status": "ready",
+      "record_count": 3,
+      "field_coverage": 0.78,
+      "fields": ["competitor_id", "brand", "asin", "price_band", "review_band"]
+    },
+    {
+      "name": "voc",
+      "status": "ready",
+      "record_count": 4,
+      "field_coverage": 0.75,
+      "fields": ["painpoint", "summary", "opportunity"]
+    }
+  ],
+  "market_stage": "mature",
+  "new_product_ramp_difficulty": {
+    "level": "high",
+    "ramp_reason": "Template sample indicates review, comfort-claim, and ranking barriers; validate with live Sorftime data.",
+    "review_threshold": "template_sample",
+    "low_review_high_sales_count": "template_sample",
+    "ad_dependency": "template_sample",
+    "brand_concentration": "template_sample",
+    "organic_ranking_barrier": "template_sample",
+    "rating_requirement": "template_sample",
+    "variation_complexity": "template_sample"
+  },
+  "entry_strategy": [
+    {
+      "entry_type": "voc_painpoint_wedge",
+      "entry_point": "comfort and battery-clarity pain points",
+      "reason": "Public-safe VOC summaries point to comfort and feature clarity rather than broad head-term entry.",
+      "required_validation": ["live Sorftime VOC summary", "prototype comfort feedback", "battery test proof"]
+    },
+    {
+      "entry_type": "keyword_wedge",
+      "entry_point": "wired and wireless on-ear keyword segmentation",
+      "reason": "Template keywords separate wired and wireless intent.",
+      "required_validation": ["live keyword competition evidence", "listing positioning test"]
+    }
+  ],
+  "voc_productization_score": [
+    {
+      "painpoint": "ear pressure during long listening",
+      "solution_feasibility": "template_sample",
+      "buyer_willingness_to_pay": "template_sample",
+      "cost_impact": "template_sample",
+      "listing_visibility": "template_sample",
+      "productization_score": 8
+    },
+    {
+      "painpoint": "battery-life expectation mismatch",
+      "solution_feasibility": "template_sample",
+      "buyer_willingness_to_pay": "template_sample",
+      "cost_impact": "template_sample",
+      "listing_visibility": "template_sample",
+      "productization_score": 7
+    },
+    {
+      "painpoint": "unclear wired-versus-wireless feature communication",
+      "solution_feasibility": "template_sample",
+      "buyer_willingness_to_pay": "template_sample",
+      "cost_impact": "template_sample",
+      "listing_visibility": "template_sample",
+      "productization_score": 6
+    }
+  ],
+  "disqualifiers": [
+    {
+      "type": "data_unreliable",
+      "status": "inactive",
+      "severity": "info",
+      "reason": "Public-safe template sample must be replaced by live Sorftime evidence before action.",
+      "required_validation": ["live Sorftime MCP collection"]
+    },
+    {
+      "type": "high_certification_cost",
+      "status": "unknown",
+      "severity": "warning",
+      "reason": "Battery and charging compliance costs are not modeled in the template sample.",
+      "required_validation": ["battery compliance proof", "certification cost check"]
+    }
+  ],
+  "evidence_level": "C_public_safe_template",
+  "competitor_clusters": {
+    "price_band_cluster": [
+      {
+        "cluster_name": "template entry price cluster",
+        "summary": "Anonymous on-ear examples occupy entry and mid-price public-safe positions.",
+        "competition_pressure": "medium-high",
+        "entry_implication": "Validate a differentiated comfort or feature wedge before entry.",
+        "evidence_level": "C_public_safe_template"
+      }
+    ],
+    "review_moat_cluster": [
+      {
+        "cluster_name": "template review moat cluster",
+        "summary": "Anonymous examples show meaningful review bands that may slow launch ramp.",
+        "competition_pressure": "high",
+        "entry_implication": "Avoid broad head-term dependence without a wedge.",
+        "evidence_level": "C_public_safe_template"
+      }
+    ],
+    "brand_dominance_cluster": [
+      {
+        "cluster_name": "template brand familiarity cluster",
+        "summary": "Audio categories can include brand-trust pressure in the template model.",
+        "competition_pressure": "high",
+        "entry_implication": "Use measurable product facts rather than generic claims.",
+        "evidence_level": "C_public_safe_template"
+      }
+    ],
+    "feature_positioning_cluster": [
+      {
+        "cluster_name": "template comfort and battery feature cluster",
+        "summary": "Comfort, battery clarity, and wired/wireless positioning form the sample feature map.",
+        "competition_pressure": "medium",
+        "entry_implication": "Separate feature claims by validated proof.",
+        "evidence_level": "C_public_safe_template"
+      }
+    ],
+    "weakness_cluster": [
+      {
+        "cluster_name": "template expectation mismatch cluster",
+        "summary": "Summarized VOC themes point to fit, comfort, and feature communication gaps.",
+        "competition_pressure": "medium",
+        "entry_implication": "Use clear specs and proof-based claims.",
+        "evidence_level": "C_public_safe_template"
+      }
+    ],
+    "newcomer_cluster": [
+      {
+        "cluster_name": "template newcomer wedge cluster",
+        "summary": "A newcomer would need a narrower keyword and VOC-backed entry route.",
+        "competition_pressure": "medium-high",
+        "entry_implication": "Validate keyword wedge before product commitment.",
+        "evidence_level": "C_public_safe_template"
+      }
+    ]
+  },
+  "profit_space_detail": {
+    "target_price": "template_sample",
+    "estimated_landed_cost": "template_sample",
+    "amazon_fee": "unknown",
+    "fba_fee": "unknown",
+    "return_loss": "unknown",
+    "promotion_buffer": "template_sample",
+    "ad_cost_tolerance": "template_sample",
+    "target_margin": "unknown"
+  },
+  "market_capacity": {
+    "public_category": "Best Sellers in On-Ear Headphones",
+    "site": "Amazon US",
+    "demand_signal": "template medium-high",
+    "trend_signal": "template stable",
+    "seasonality_signal": "template low"
+  },
+  "keywords": [
+    {
+      "keyword": "on-ear headphones",
+      "intent": "category",
+      "competition_proxy": "high"
+    },
+    {
+      "keyword": "wireless on-ear headphones",
+      "intent": "attribute",
+      "competition_proxy": "medium-high"
+    },
+    {
+      "keyword": "wired on-ear headphones",
+      "intent": "attribute",
+      "competition_proxy": "medium"
+    }
+  ],
+  "competitors": [
+    {
+      "competitor_id": "example_competitor_001",
+      "asin": "example_asin_001",
+      "brand": "example_brand_a",
+      "positioning": "entry wireless model",
+      "price_band": "29.99-39.99",
+      "review_band": "1000-5000",
+      "rating_band": "4.2-4.6"
+    },
+    {
+      "competitor_id": "example_competitor_002",
+      "asin": "example_asin_002",
+      "brand": "example_brand_b",
+      "positioning": "comfort-focused model",
+      "price_band": "39.99-59.99",
+      "review_band": "500-3000",
+      "rating_band": "4.1-4.5"
+    },
+    {
+      "competitor_id": "example_competitor_003",
+      "asin": "example_asin_003",
+      "brand": "example_brand_c",
+      "positioning": "wired budget model",
+      "price_band": "19.99-29.99",
+      "review_band": "300-2000",
+      "rating_band": "4.0-4.4"
+    }
+  ],
+  "price_profit": {
+    "target_price_band": "29.99-59.99",
+    "target_cost_band": "12.00-24.00",
+    "margin_signal": "template workable only after battery and return-cost checks",
+    "missing_cost_inputs": ["battery certification cost", "return cost"]
+  },
+  "voc": {
+    "painpoint_summary": [
+      "ear pressure during long listening",
+      "battery-life expectation mismatch",
+      "unclear wired-versus-wireless feature communication"
+    ],
+    "positive_motivation_summary": [
+      "portable everyday listening",
+      "lightweight comfort",
+      "simple connectivity"
+    ]
+  },
+  "differentiation": [
+    "comfort-first headband and cushion design",
+    "clear battery-life and charging communication",
+    "separate wired and wireless keyword strategy"
+  ],
+  "risks": [
+    "battery compliance must be confirmed",
+    "audio performance claims must be measured",
+    "returns may rise if comfort claims are overpromised"
+  ],
+  "score_overrides": {
+    "demand_capacity": {
+      "score": 16,
+      "reason": "Public category and keyword sample show a broad template demand signal.",
+      "confidence": "medium",
+      "missing_data": []
+    },
+    "competition_entry": {
+      "score": 12,
+      "reason": "Competition is likely meaningful; this template suggests caution.",
+      "confidence": "medium",
+      "missing_data": []
+    },
+    "profit_space": {
+      "score": 13,
+      "reason": "Price band may work, but battery compliance and return cost are unresolved.",
+      "confidence": "low",
+      "missing_data": ["battery certification cost", "return cost"]
+    },
+    "differentiation_opportunity": {
+      "score": 12,
+      "reason": "Comfort and feature clarity provide plausible differentiation angles.",
+      "confidence": "medium",
+      "missing_data": []
+    },
+    "voc_painpoint_opportunity": {
+      "score": 8,
+      "reason": "Summarized VOC themes are actionable without using raw review text.",
+      "confidence": "medium",
+      "missing_data": []
+    },
+    "keyword_entry": {
+      "score": 7,
+      "reason": "Wireless and wired modifiers create possible entry segmentation.",
+      "confidence": "medium",
+      "missing_data": []
+    },
+    "compliance_supply_risk": {
+      "score": 3,
+      "reason": "Battery and audio claims require verification.",
+      "confidence": "low",
+      "missing_data": ["battery compliance proof", "audio measurement proof"]
+    }
+  },
+  "decision_summary": "This public-safe template sample maps to cautious, but it is not a real selection conclusion and must not be used as live market advice.",
+  "analysis": {
+    "category_capacity": {
+      "conclusion": "The public category name is usable for a template capacity frame.",
+      "evidence": "Best Sellers in On-Ear Headphones and Amazon US are public-safe references.",
+      "source": "sorftime_mcp_full_market_data",
+      "confidence": "medium",
+      "assumption": "The fixture demonstrates structure only and does not claim live demand.",
+      "missing_data": []
+    },
+    "keyword_opportunity": {
+      "conclusion": "Separate wired and wireless keyword paths before making an entry decision.",
+      "evidence": "The fixture includes on-ear headphones, wireless on-ear headphones, and wired on-ear headphones.",
+      "source": "sorftime_mcp_full_market_data",
+      "confidence": "medium",
+      "assumption": "Keyword competition is represented by template proxy values.",
+      "missing_data": []
+    },
+    "competitor_structure": {
+      "conclusion": "Use anonymous competitor clusters rather than real competitor identifiers.",
+      "evidence": "Competitors are represented as example_competitor_001 and related anonymous rows.",
+      "source": "sorftime_mcp_full_market_data",
+      "confidence": "medium",
+      "assumption": "The fixture preserves structure but removes private identifiers.",
+      "missing_data": []
+    },
+    "price_profit": {
+      "conclusion": "Profit cannot be treated as confirmed until battery and return costs are validated.",
+      "evidence": "The fixture marks battery certification cost and return cost as missing.",
+      "source": "sorftime_mcp_full_market_data",
+      "confidence": "low",
+      "assumption": "Target price and cost bands are sample bands only.",
+      "missing_data": ["battery certification cost", "return cost"]
+    },
+    "review_voc": {
+      "conclusion": "Comfort, battery clarity, and feature communication are the main template VOC angles.",
+      "evidence": "Only summarized VOC themes are included; raw review text is excluded.",
+      "source": "sorftime_mcp_full_market_data",
+      "confidence": "medium",
+      "assumption": "VOC summaries are representative of the fixture structure only.",
+      "missing_data": []
+    },
+    "differentiation": {
+      "conclusion": "Differentiation should start from comfort and clear feature segmentation.",
+      "evidence": "Wireless and wired positioning can be separated with different keyword briefs.",
+      "source": "sorftime_mcp_full_market_data",
+      "confidence": "medium",
+      "assumption": "Product engineering can validate comfort and battery claims.",
+      "missing_data": ["prototype comfort data", "battery test data"]
+    },
+    "risk": {
+      "conclusion": "Compliance and claim verification are the main gating risks.",
+      "evidence": "Battery, charging, and audio performance claims require proof.",
+      "source": "sorftime_mcp_full_market_data",
+      "confidence": "low",
+      "assumption": "No claim should be used before supplier proof is available.",
+      "missing_data": ["battery compliance proof", "audio measurement proof"]
+    }
+  },
+  "evidence": [
+    {
+      "claim": "Public category and keyword names can be retained in public-safe tests.",
+      "source": "sorftime_mcp_full_market_data",
+      "evidence": "The fixture uses Best Sellers in On-Ear Headphones, Amazon US, and generic on-ear keyword variants.",
+      "confidence": "high"
+    },
+    {
+      "claim": "Competitor identifiers remain anonymous.",
+      "source": "sorftime_mcp_full_market_data",
+      "evidence": "Brands, ASINs, and competitors use example identifiers.",
+      "confidence": "high"
+    }
+  ],
+  "assumptions": [
+    "This is a public-safe template sample and not live market data.",
+    "It is not a complete real Top 100.",
+    "It is not a raw Sorftime export.",
+    "It does not represent a real product selection conclusion."
+  ],
+  "next_validation_actions": [
+    "Run live Sorftime MCP data collection before making a real decision.",
+    "Separate wired and wireless keyword validation.",
+    "Verify battery compliance, audio claims, return costs, and supplier facts."
+  ],
+  "downstream_brief": {
+    "product_identity": "public-safe on-ear headphones concept",
+    "target_user": "everyday listeners comparing comfort, portability, and simple connectivity",
+    "priority_keywords": ["on-ear headphones", "wireless on-ear headphones", "wired on-ear headphones"],
+    "user_questions": ["Will it stay comfortable?", "How long does the battery last?", "Is wired or wireless better for my use?"],
+    "differentiation_points": ["comfort-first fit", "clear battery communication", "wired and wireless segmentation"],
+    "facts_to_confirm": ["battery compliance", "audio measurements", "comfort prototype feedback", "return cost"],
+    "restricted_claims": ["unverified noise-cancellation claims", "medical hearing claims", "unverified battery claims"],
+    "handoff_notes": "Do not use as a live product-entry conclusion; use only as a template handoff structure."
+  }
+}

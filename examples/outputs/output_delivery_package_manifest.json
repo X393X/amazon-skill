@@ -1,0 +1,15 @@
+{
+  "package_name": "product_selection_delivery_package.zip",
+  "privacy_mode": "public_safe_real_world",
+  "publish_status": "local_only",
+  "shareable_url": null,
+  "shareable_url_scope": "none",
+  "files": [
+    "product_selection_report.html",
+    "product_selection_report.md",
+    "product_selection_data.json",
+    "source_manifest.json",
+    "validation_result.json",
+    "README_OPEN_REPORT.txt"
+  ]
+}

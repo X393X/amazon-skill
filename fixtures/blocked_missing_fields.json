@@ -1,0 +1,55 @@
+{
+  "privacy_mode": "public_safe_real_world",
+  "fixture_name": "blocked_missing_fields",
+  "required_fields_present": false,
+  "missing_fields": [
+    "price band",
+    "review band",
+    "keyword competition proxy",
+    "profit cost inputs"
+  ],
+  "input": {
+    "keyword": "example partial keyword",
+    "category": "example partial category",
+    "asin": [],
+    "product_idea": "example product idea with partial fields",
+    "site": "Amazon US",
+    "target_price": null,
+    "target_cost": null,
+    "constraints": []
+  },
+  "sorftime_status": {
+    "status": "partial",
+    "available": true,
+    "tools": ["sorftime_mcp_full_market_data"],
+    "checked_at": "template_sample",
+    "notes": "Public-safe blocked fixture with missing fields."
+  },
+  "market_capacity": {
+    "demand_signal": "partial"
+  },
+  "keywords": [
+    {
+      "keyword": "example partial keyword",
+      "intent": "category"
+    }
+  ],
+  "competitors": [
+    {
+      "competitor_id": "example_competitor_001",
+      "asin": "example_asin_001",
+      "brand": "example_brand_a"
+    }
+  ],
+  "price_profit": {},
+  "voc": {},
+  "differentiation": [],
+  "risks": [],
+  "assumptions": [
+    "This fixture verifies blocked_missing_fields package generation."
+  ],
+  "next_validation_actions": [
+    "Collect missing price, review, keyword, and cost fields from Sorftime MCP.",
+    "Rerun package generation after field coverage is sufficient."
+  ]
+}

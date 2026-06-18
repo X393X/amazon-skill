@@ -1,0 +1,6 @@
+{
+  "privacy_mode": "public_safe_real_world",
+  "blocked_status": "blocked_missing_site",
+  "missing_fields": ["marketplace"],
+  "next_validation_actions": ["Provide marketplace US, UK, or CA."]
+}

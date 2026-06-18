@@ -1,0 +1,85 @@
+{
+  "contract_version": "1.0.0",
+  "privacy_mode": "public_safe_real_world",
+  "adapter_name": "sorftime_mcp_public_safe_contract",
+  "auth_mode": "mcp_managed",
+  "network_location": "configured_in_local_mcp_runtime",
+  "private_internal_support": {
+    "mode": "private_internal",
+    "config_template": "adapters/private_config.example.json",
+    "local_config_name": "private_config.local.json",
+    "auth_env": "SORFTIME_MCP_TOKEN",
+    "do_not_publish": [
+      "private_config.local.json",
+      "runtime/",
+      "dist/*.html",
+      "dist/*.json",
+      "raw_sorftime_response",
+      "token",
+      "cookie",
+      "secret",
+      "account"
+    ]
+  },
+  "default_test_fixture": "fixtures/best_sellers_on_ear_headphones_us_public_safe.json",
+  "required_request": {
+    "site": "Amazon US",
+    "query": {
+      "type": "keyword_or_category",
+      "value": "on-ear headphones"
+    },
+    "include_blocks": [
+      "market_capacity",
+      "keywords",
+      "competitors",
+      "price_profit",
+      "voc",
+      "differentiation",
+      "risks"
+    ],
+    "privacy_requirements": {
+      "anonymize_competitors": true,
+      "exclude_raw_review_text": true,
+      "exclude_raw_export": true,
+      "exclude_user_private_data": true
+    }
+  },
+  "required_response_blocks": {
+    "sorftime_status": {
+      "status": "ready_or_blocked",
+      "tools": ["sorftime_mcp_full_market_data"],
+      "blocking_status": "null_or_blocked_status"
+    },
+    "market_capacity": {
+      "demand_signal": "summary_or_proxy",
+      "trend_signal": "summary_or_proxy",
+      "seasonality_signal": "summary_or_proxy"
+    },
+    "keywords": [
+      {
+        "keyword": "public_or_anonymized_keyword",
+        "intent": "category_attribute_scenario_or_long_tail",
+        "competition_proxy": "low_medium_or_high"
+      }
+    ],
+    "competitors": [
+      {
+        "competitor_id": "example_competitor_001",
+        "asin": "example_asin_001",
+        "brand": "example_brand_a",
+        "price_band": "summary_band",
+        "review_band": "summary_band"
+      }
+    ],
+    "voc": {
+      "painpoint_summary": ["summarized_theme_only"],
+      "positive_motivation_summary": ["summarized_theme_only"]
+    }
+  },
+  "blocked_statuses": [
+    "blocked_no_data",
+    "blocked_missing_fields",
+    "blocked_sorftime_unavailable"
+  ],
+  "public_safe_notice": "This contract is a template shape only. It is not live market data, not a complete real Top 100, not a raw Sorftime export, and not a real product selection conclusion."
+}

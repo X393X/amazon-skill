@@ -1,0 +1,6 @@
+{
+  "privacy_mode": "public_safe_real_world",
+  "blocked_status": "blocked_invalid_input",
+  "missing_fields": ["valid input_type"],
+  "next_validation_actions": ["Use asin, url, keyword, category, best_sellers, or natural_language."]
+}

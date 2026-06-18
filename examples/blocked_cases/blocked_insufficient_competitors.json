@@ -1,0 +1,6 @@
+{
+  "privacy_mode": "public_safe_real_world",
+  "blocked_status": "blocked_insufficient_competitors",
+  "missing_fields": ["sufficient comparable competitors"],
+  "next_validation_actions": ["Provide more ASINs or rerun category/search dataset collection."]
+}

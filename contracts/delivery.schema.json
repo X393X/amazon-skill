@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "contracts/delivery.schema.json",
+  "title": "Delivery Contract",
+  "type": "object",
+  "required": [
+    "local_preview_url",
+    "is_localhost_only",
+    "report_file_path",
+    "package_zip_path",
+    "publish_status",
+    "shareable_url",
+    "shareable_url_scope",
+    "notes"
+  ],
+  "properties": {
+    "local_preview_url": { "type": "string" },
+    "is_localhost_only": { "type": "boolean" },
+    "report_file_path": { "type": "string" },
+    "package_zip_path": { "type": "string" },
+    "public_safe_publish_url": { "type": ["string", "null"] },
+    "internal_publish_url": { "type": ["string", "null"] },
+    "publish_status": {
+      "type": "string",
+      "enum": ["not_published", "local_only", "public_safe_published", "internal_published"]
+    },
+    "shareable_url": { "type": ["string", "null"] },
+    "shareable_url_scope": { "type": "string", "enum": ["none", "public_safe", "internal_only"] },
+    "notes": { "type": "string" }
+  },
+  "rules": [
+    "localhost and loopback URLs are allowed only in local_preview_url with is_localhost_only=true",
+    "shareable_url must not use localhost or loopback addresses",
+    "private_internal must not use public_safe shareable scope"
+  ]
+}

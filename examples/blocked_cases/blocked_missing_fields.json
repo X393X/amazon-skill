@@ -1,0 +1,6 @@
+{
+  "privacy_mode": "public_safe_real_world",
+  "blocked_status": "blocked_missing_fields",
+  "missing_fields": ["category_metrics", "keyword_metrics", "competitor_matrix"],
+  "next_validation_actions": ["Call category report, keyword detail, and competitor tools."]
+}
